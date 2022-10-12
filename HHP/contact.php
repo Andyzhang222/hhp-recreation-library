@@ -17,7 +17,7 @@
 
 		<article id="main-article2">
 			
-			<h2>Checkout Item!</h2> 
+			<h2>Checkout Item</h2> 
 			
 			<div id="contactform">
 				<form action="#">
