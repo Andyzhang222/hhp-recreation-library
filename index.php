@@ -1,5 +1,8 @@
 <?php
-    include ('Templates/Header.php') ;
+    require 'includes/header.php';
+    require 'includes/db-connection.php';
+    $conn = OpenConn();
+    CloseConn($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,5 +42,12 @@
 		</section>
 	</section>
 
-<?php include('Templates/footer.php'); ?>
+    <?php
+    require "includes/footer.php"; 
+    ?>
 </html> 
+
+
+
+
+
