@@ -1,0 +1,21 @@
+main form {
+    width: 25%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+main {
+    height: 70vh;
+}
+
+footer {
+    position: relative;
+}
+
+#submit-code {
+    margin-top: 15px;
+}
+
+#admin-button {
+    height: inherit;
+}
