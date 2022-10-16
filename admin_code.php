@@ -17,7 +17,7 @@ $Admin_Code = $_POST['id'];
 if (!($Admin_Code==""))
 {
 
-$sql="SELECT * FROM admin WHERE Id = '$_POST[id]' 	 ";
+$sql="SELECT * FROM admin_code WHERE Id = '$_POST[id]' 	 ";
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
