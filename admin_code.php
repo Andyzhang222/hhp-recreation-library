@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "sand";
+$dbname = "hhp_recreation_library";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
