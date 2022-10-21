@@ -1,145 +1,69 @@
 <main>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Equipment List</h1>
-                <p class="lead text-muted">Welcome to the recreation library, a resource for students in the School of Health and Human Performance, where you can sign out recreation equipment for program and project use. Below you will find a list of available equipment.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <h2 class="fw-light">Accessibility learning tools</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Simulated uneven surface</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="fw-light">Art Supplies</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Canvases</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Paint</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Scissor</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="fw-light">Camping & Outdoor Equipment</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Sleeping bag</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Football</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Flashlight and lantern</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Paddle</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Boat rope</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text align-items-center text-center">Tarp</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Equipment List</h1>
+        <p class="fs-5 text-muted" id="intro-p">Welcome to the recreation library, a resource for students in the School of Health and Human Performance, where you can sign out recreation equipment for program and project use. Below you will find a list of available equipment for borrow.</p>
     </div>
 
+    <div class="album py-5">
+        <div class="container">
+            <?php
+                $catCountQuery = "SELECT COUNT(*) FROM `equipment_category`;";
+                $catCountResult = $conn->query($catCountQuery);
+                
+                if ($catCountResult->num_rows == 0) {
+                    echo "<p class='text-dark'>No category found.</p>";
+                } else {
+                    $fetchResult = $catCountResult->fetch_assoc();
+                    $numCat = (int) $fetchResult['COUNT(*)'];
+
+                    for ($i=1; $i <= $numCat; $i++) {
+                        $retrieveCatQuery = "SELECT * 
+                        FROM `equipment_category` 
+                        WHERE id = $i;";
+
+                        $retrieveCatResult = $conn->query($retrieveCatQuery);
+                        if ($retrieveCatResult->num_rows == 0) {
+                            echo "<p class='text-dark'>No category with id " . $i . " exist.</p>";
+                        } else {
+                            $queryResult = $retrieveCatResult->fetch_assoc();
+                            $category = $queryResult['description'];
+                        }
+                        ?>
+            <h2 class="fw-light"><?php echo $category; ?></h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
+                        <?php
+                        $catQuery = "SELECT * 
+                        FROM `equipment_type` 
+                        WHERE category = $i;";
+                        $catResult = $conn->query($catQuery);
+
+                        if ($catResult->num_rows == 0) {
+                            echo "<p class='text-dark'>No items available for borrow in this category.</p>";
+                        } else {
+                            $k = 1;
+                            while ($result = $catResult->fetch_assoc()) {
+                                $description = $result['description'];
+                                $item_id = $result['id'];
+                                ?>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><a href="http://localhost:8888/pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><title>item's photo</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></a></svg>
+
+                        <div class="card-body">
+                            <a href="http://localhost:8888/pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><p><?php echo $description; ?></p></a>
+                        </div>
+                    </div>
+                </div>
+                            <?php
+                                $k++;
+                            }
+                        }
+                        ?>
+            </div>
+            <?php
+                    }
+                }
+            ?>
+        </div>
+    </div>
 </main>

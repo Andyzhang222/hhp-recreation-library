@@ -18,23 +18,16 @@
     </head>
 
     <body>
-        <header class="p-3 text-bg-dark">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="http://localhost:8888/hhp-recreation-library/" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Equipment</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                    </ul>
+        <div class="container py-3" id="main-content">
+            <header>
+                <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                    <img src="http://localhost:8888/img/dal-logo.png"> 
+                    <span class="fs-4"><a href="http://localhost:8888/" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-                    </form>
-
-                    <div class="text-end">
-                        <button type="button" class="btn btn-warning" id="admin-button"><a href="http://localhost:8888/hhp-recreation-library/pages/admin-login.php" class="btn">Admin</a></button>
-                    </div>
+                    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/">Equipment</a>
+                        <a class="py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/admin-login.php">Admin</a>
+                    </nav>
                 </div>
-            </div>
-        </header>
+            </header>
