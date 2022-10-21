@@ -41,6 +41,7 @@
             </div>
             <div class="card-body">
                 <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</button>
+                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</button>
             </div>
             </div>
         </div>
