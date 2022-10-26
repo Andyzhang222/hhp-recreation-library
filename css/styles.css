@@ -1,0 +1,76 @@
+body {
+    min-height: 100vh;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    padding-top: 10px;
+    border-top: 20px;
+    bottom: 0;
+}
+
+#div-footer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+img {
+    width: 120px;
+    margin-right: 18px;
+}
+
+#main-content {
+    width: 70%;
+    margin: auto;
+}
+
+#admin-form {
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+#submit-code {
+    border-bottom: 10px;
+}
+
+#admin-portal {
+    padding-top: 8%;
+    padding-bottom: 10%;
+}
+
+#intro-p {
+    width: 70%;
+    margin: auto;
+}
+
+#admin-input {
+    width: 40%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.btn-spacing {
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.select-quant {
+    padding-bottom: 10px;
+    width: 100px;
+}
+
+.btn-styling {
+    margin-top: 20px;
+}
+
+.item-display {
+    padding-left: 5%;
+    padding-bottom: 10%;
+    padding-top: 5%;
+}
+
+.item-image {
+    margin-left: 10px;
+}

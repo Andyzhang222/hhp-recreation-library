@@ -1,6 +1,4 @@
 <?php
-
-function OpenConn() {
     $servername = "localhost:8889";
     $username = "root";
     $password = "/)18F)@VW!BVbdJF";
@@ -13,14 +11,7 @@ function OpenConn() {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    echo "Connected successfully";
+    //echo "Connected successfully";
 
     return $conn;
-}
-
-function CloseConn($conn) {
-    $conn -> close();
-}
-
-
 ?> 
