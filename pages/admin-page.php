@@ -17,7 +17,7 @@
             <div class="card-body">
                 <button type="button" id="add-item" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Add new item</button>
                 <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Update item quantity</button>
-                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</button>
+                <button type="button" id="remove-item" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</button>
             </div>
             </div>
         </div>
@@ -57,5 +57,10 @@
 <script type="text/javascript">
     document.getElementById("add-item").onclick = function () {
         location.href = "add-item.php";
+    };
+</script>
+<script type="text/javascript">
+    document.getElementById("remove-item").onclick = function () {
+        location.href = "remove-item.php";
     };
 </script>
