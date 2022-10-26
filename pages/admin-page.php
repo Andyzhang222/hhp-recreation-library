@@ -40,8 +40,8 @@
                 <h4 class="my-0 fw-normal">Manage admin access</h4>
             </div>
             <div class="card-body">
-                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</button>
-                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</button>
+                <button type="button" id="access-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</button>
+                <button type="button" id="add-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</button>
             </div>
             </div>
         </div>
@@ -62,5 +62,15 @@
 <script type="text/javascript">
     document.getElementById("remove-item").onclick = function () {
         location.href = "remove-item.php";
+    };
+</script>
+<script type="text/javascript">
+    document.getElementById("access-code").onclick = function () {
+        location.href = "access-codes.php";
+    };
+</script>
+<script type="text/javascript">
+    document.getElementById("add-code").onclick = function () {
+        location.href = "add-code.php";
     };
 </script>
