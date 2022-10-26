@@ -25,8 +25,8 @@
                     <span class="fs-4"><a href="http://localhost:8888/" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
 
                     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/">Equipment</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/return-page.php">Return</a>
                         <a class="py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/admin-login.php">Admin</a>
                     </nav>
