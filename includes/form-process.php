@@ -13,22 +13,22 @@ $confirmPassword = $_POST['ConfirmPassword'];
 
 
 if(empty($FirstName)){
-    $FirstName_error= "please enter the valid first name";
+    $FirstName_error= "Please enter the valid first name";
 }
 if(preg_match("/.*[0-9].*/", $FirstName)){
-    $FirstName_error= "Numerical Number can not allowed in name";
+    $FirstName_error= "Number is not allowed in name";
 }
 
 if(empty($LastName)){
-    $LastName_error= "please enter the valid Last name";
+    $LastName_error= "Please enter a valid Last name";
 }elseif(preg_match("/.*[0-9].*/", $LastName)){
-    $LastName_error= "Numerical Number can not allowed in name";
+    $LastName_error= "Number is not allowed in name";
 }
 
 if (empty($email)){
-    $email_error = "please enter a valid email";
+    $email_error = "Please enter a valid email";
 }elseif(strlen($email) - strrpos($email, '.') <= 2 || strlen($email) - strrpos($email, '.') > 6){
-    $email_error = "please enter the email with the damoin number between 2 to 5 ";
+    $email_error = "Please enter the email with the damoin number between 2 to 5 ";
 }
 
 
