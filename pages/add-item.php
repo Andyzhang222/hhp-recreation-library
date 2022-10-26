@@ -21,23 +21,16 @@
   
   </div>
 
+  <label for="exampleInputEmail1" class="form-label">Item Category</label>
+  <div class="d-flex gap-5 justify-content-center">
+  <button class="btn dropdown-toggle" id="dropdown-button" data-toggle="dropdown">
+  <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+    <li><a id="drop" class="dropdown-item rounded-2 active" href="#">Learning Tools</a></li>
+    <li><a class="dropdown-item rounded-2" href="#">Art Supplies</a></li>
+    <li><a class="dropdown-item rounded-2" href="#">Outdoor Equipment</a></li>
+  </ul>
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1">
-    <div id="emailHelp" class="form-text"></div>
-
-    <?php if(isset($LastName_error))echo $LastName_error; ?>
-
-  </div>
-
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Iventory</label>
-    <input type="password" class="form-control" id="exampleInputEmail1" >
-    <div id="emailHelp" class="form-text"></div>
-
-    <?php if(isset($password_error))echo $password_error; ?>
-  </div>
+</div>
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">QTY</label>
@@ -46,18 +39,14 @@
     <?php if(isset($cp_error))echo $cp_error; ?>
   </div>
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">E-mail</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="E-mail">
-    <div id="emailHelp" class="form-text"></div>
-
-    <?php if(isset($email_error))echo $email_error; ?>
-  </div>
-
- 
-
   <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
 </form>
     </div>
        
     </div>
+
+    <script type="text/javascript">
+    document.getElementById("btn dropdown-toggle").onclick = function () {
+        document.getElementById("dropdown-button").dropdown("toggle");
+    };
+</script>
