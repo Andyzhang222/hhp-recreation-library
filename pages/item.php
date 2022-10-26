@@ -65,6 +65,6 @@
 
 <script type="text/javascript">
     document.getElementById("form-page").onclick = function () {
-        location.href = "../includes/form-page.php";
+        location.href = "form-page.php";
     };
 </script>

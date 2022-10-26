@@ -1,4 +1,8 @@
-<h2 class="text-center">Returns</h2> 
+<?php
+    require '../includes/header.php';
+    require '../includes/db-connection.php';
+?>
+<h2 class="text-center">Checkout</h2> 
  
     <div class = "vh-100 d-flex justify-content-center align-content-center">
     
