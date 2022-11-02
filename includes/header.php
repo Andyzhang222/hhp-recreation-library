@@ -1,34 +1,89 @@
+<?php
+if($_GET["q"] == "Search..."){
+    header("Location: index.php");
+}
+if($_GET["q"] !== ""){
+    require "includes/db-connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>HHP Recreation Library</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
-<body class="grey lighten-2">
-<header class="p-3 text-bg-dark">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-        </a>
+    <head>
+        <title>HHP Recreation Library</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            nav  {
+                margin-right: 2%;
+            }
+            #searchBar {
+                border: 2px solid #000000;
+                border-left: none;
+                font-size: 16px;
+                padding: 10px;
+                outline: none;
+                width: 250px;
+                float: right;
+            }
+            #searchBtn {
+                border: 2px solid #000000;
+                font-size: 16px;
+                padding: 10px;
+                background: #f1d829;
+                font-weight: bold;
+                cursor: pointer;
+                outline: none;
+                float: right;
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>
+            }
+            
+        </style>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
+        <link rel="stylesheet" href="../css/styles.css">
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
-        </div>
-      </div>
-    </div>
-  </header>
+        <!-- Bootstrap CSS Core -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    </head>
+
+    <body>
+        <div class="container py-3" id="main-content">
+            <header>
+                <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                    <img src="http://localhost:8888/img/dal-logo.png"> 
+                    <span class="fs-4"><a href="http://localhost:8888/" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
+
+                    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/">Equipment</a>
+                        <a class="py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/admin-login.php">Admin</a>
+                    </nav>
+                    <form action="index.php" method="GET" id="searchForm">
+                        <input type="text" name="q" id="searchBar" placeholder="" value="Search..." maxlength="30" autocomplete="on"/>
+                        <input type="submit" id="searchBtn" value="Search"/>
+                    </form>
+                    <?php
+                    if(!isset($q)){
+                        echo " ";
+                    } else {
+                    $catCountQuery = "SELECT COUNT(*) FROM `equipment_category` WHERE description LIKE '%$q%';";
+                    $catCountResult = $conn->query($catCountQuery);
+                    
+
+                    while ($row = fetch_array($catCountQuery)){
+                        $id = $row["id"];
+                        $desc = $row["description"];
+
+                        echo '<h3><a href="' .$id. '.php">' . $id . '</h3><p> ' . $desc . '</p><br />';
+                    }
+                    }
+
+                    ?> 
+            </header>
+<?php
+} else {
+    header("Location: index.php");
+}
+?>
