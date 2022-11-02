@@ -1,6 +1,8 @@
 <?php
   require_once "../includes/db-connection.php";
   require "../includes/header.php";
+ 
+
   ?>
 
 <main>
@@ -33,13 +35,13 @@
                                 $category = $queryResult['description'];
                             }
                             ?>
-                <h2 class="fw-light"><?php echo $category; ?></h2>
-                <div class=" row-cols-sm-2 row-cols-md-3 g-3 p-3">
+                            <h2 class="fw-light"><?php echo $category; ?></h2>
+                            <div class="g-3 p-3">
                             <?php
-                            $catQuery = "SELECT * 
-                            FROM `equipment_type` 
-                            WHERE category = $i;";
-                            $catResult = $conn->query($catQuery);
+                                $catQuery = "SELECT * 
+                                FROM `equipment_type` 
+                                WHERE category = $i;";
+                                $catResult = $conn->query($catQuery);
 
                             if ($catResult->num_rows == 0) {
                                 echo "<p class='text-dark'>No items available for borrow in this category.</p>";
@@ -48,16 +50,23 @@
                                 while ($result = $catResult->fetch_assoc()) {
                                     $description = $result['description'];
                                     $item_id = $result['id'];
+                                    $code = $result['code'];
+                                    $quantity = $result['quantity'];
                                     ?>
-                    <div class="col">
-                        <div class="card shadow-sm">
+                            <div class="col">
+                                <div class="card shadow-sm">
                             
-                            <div class="card-body">
+                                <div class="card-body">
                                 <H3 class="fw-light"><?php echo $description?></H3>
-                                
+                                </div>
                             </div>
-                        </div>
-                    </div>
+
+                            <div class="card-body">
+                                <p>Enter new item quantity</p>
+                                <input type="text" id = "<?php echo $code?>" class= "InputField" name = "<?php echo $code?>" value = "<?php echo $quantity?>">
+                            </div> 
+
+                            </div>
                                 <?php
                                     $k++;
                                 }
@@ -68,6 +77,9 @@
                         }
                     }
                 ?>
+                <!-- button here -->
+                <button class="submit"
+                    onclick="alert('Item Quantities Updated In DataBase');">Submit</button>
             </form>
         </div>
     </div>

@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
                 <button type="button" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Add new item</button>
-                <a href = "http://localhost:8888/pages/update.php"  class="btn-spacing w-100 btn btn-lg btn-outline-dark">Update item quantity</button>
+                <button type="button" id ="update-quantity" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Update Item Quantity</button>
                 <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</button>
             </div>
             </div>
@@ -53,3 +53,10 @@
 
   require "../includes/footer.php";
 ?>
+
+<script type="text/javascript">
+    document.getElementById("update-quantity").onclick = function () {
+        location.href = "update.php";
+
+    };
+</script>
