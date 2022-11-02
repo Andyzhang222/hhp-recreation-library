@@ -32,6 +32,7 @@
         $categoryDesc = $queryResult['description'];
       }
     }
+
   
 ?>
 
@@ -50,7 +51,7 @@
       ?>
     </select>
     
-    <button type="button" class="btn-styling btn btn-warning">Request item</button>
+    <button type="button" id="form-page" class="btn-styling btn btn-warning">Request item</button>
   </div>
   <div class="col-md-5 order-md-1">
     <svg class="item-image bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="320" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>item's photo</title><rect width="100%" height="100%" fill="#eee"/><text x="40%" y="40%" fill="#aaa" dy=".3em">item's photo here</text></svg>
@@ -61,3 +62,9 @@
   }
     require "../includes/footer.php";
 ?>
+
+<script type="text/javascript">
+    document.getElementById("form-page").onclick = function () {
+        location.href = "form-page.php";
+    };
+</script>
