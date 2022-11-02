@@ -1,0 +1,154 @@
+body {
+    min-height: 100vh;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    padding-top: 10px;
+    border-top: 20px;
+    bottom: 0;
+}
+
+#div-footer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+img {
+    width: 120px;
+    margin-right: 18px;
+}
+
+#main-content {
+    width: 70%;
+    margin: auto;
+}
+
+#admin-form {
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+#submit-code {
+    border-bottom: 10px;
+}
+
+#admin-portal {
+    padding-top: 8%;
+    padding-bottom: 10%;
+}
+
+#intro-p {
+    width: 70%;
+    margin: auto;
+}
+
+#admin-input {
+    width: 40%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.btn-spacing {
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.select-quant {
+    padding-bottom: 10px;
+    width: 100px;
+}
+
+.btn-styling {
+    margin-top: 20px;
+}
+
+.item-display {
+    padding-left: 5%;
+    padding-bottom: 10%;
+    padding-top: 5%;
+}
+
+.item-image {
+    margin-left: 10px;
+}
+
+#pg-banner{
+    color:black;
+    font-size:x-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 10px; 
+    margin-bottom: 15px;
+    border-bottom: darkcyan solid;
+    margin-bottom: 20px;
+}
+
+#logo-img{
+    width: 20%;
+    height: 30%;
+    display: flex;
+    position: left;
+    border: black solid;
+}
+
+/*page-banner part:
+set the pg-banner h1 text in the middle of the container and set the color to the wheat*/
+#pg-banner h1{
+    text-align: center;
+    color: darkcyan; 
+}
+
+/*page-banner part:
+set the pg-banner h1 text in the middle of the container*/
+#pg-banner nav a{
+    color: darkcyan;
+    font-size: large;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+
+
+/*page-banner part:
+set the pg-banner navigation bar in the specific position*/
+#pg-banner nav  {
+    text-align: center;
+    padding: 5px;
+    font-size: large;
+    color: darkcyan; 
+    width: 100%;  
+}
+
+/*page-banner part:
+set the pg-banner link with the hover elment*/
+#pg-banner a:hover{
+    background-color: darkcyan;
+    color: black;
+}
+
+/*set the About Tiger News part with the padding which space top and bottom*/
+#pg-footer{
+    border-top: wheat solid;
+    background-color: darkcyan;
+    color: wheat;
+    padding: 30px 20px 40px;
+    margin-top: 150px;
+}
+
+/*set the other page's h2 with the specifc element*/
+#pg-main-content-other h2{
+    text-align: center;
+    color: darkcyan;                       
+}
+
+/*set the form in the homepage*/
+#main-article2 form {
+    text-align: center;
+    margin-left: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 300px; 
+}
