@@ -14,7 +14,13 @@
     <?php
       if (isset($_GET["access-denied"])) {
         if ($_GET["access-denied"] == 1) {
-          echo "<p class='lead text-danger text-center'>Access denied. Please contact administrators for access.</p>";
+          echo "<p class='alert alert-danger' id='wrong-password'>Access denied. Please contact administrators for access.</p>";
+        }
+      }
+
+      if (isset($_GET["empty-input"])) {
+        if ($_GET["empty-input"] == 1) {
+          echo "<p class='alert alert-danger' id='empty-input'>No code entered.</p>";
         }
       }
     ?>

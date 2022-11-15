@@ -1,7 +1,3 @@
-body {
-    min-height: 100vh;
-}
-
 footer {
     width: 100%;
     position: absolute;
@@ -24,20 +20,38 @@ img {
 #main-content {
     width: 70%;
     margin: auto;
+    min-height: 70vh;
 }
 
 #admin-form {
-    padding-top: 20%;
-    padding-bottom: 20%;
+    min-height: 70vh;
+    vertical-align: middle;
+}
+
+#cart-icon {
+    width: 25px;
+    margin-right: 0;
+    margin-top: 5px;
 }
 
 #submit-code {
     border-bottom: 10px;
 }
 
+#wrong-password {
+    width: 48%;
+    margin: auto;
+    margin-bottom: 14px;
+}
+
+#empty-input {
+    width: 20%;
+    margin: auto;
+    margin-bottom: 14px;
+}
+
 #admin-portal {
-    padding-top: 8%;
-    padding-bottom: 10%;
+    min-height: 70vh;
 }
 
 #intro-p {
@@ -66,9 +80,8 @@ img {
 }
 
 .item-display {
-    padding-left: 5%;
-    padding-bottom: 10%;
-    padding-top: 5%;
+    min-height: 70vh;
+    vertical-align: middle;
 }
 
 .item-image {

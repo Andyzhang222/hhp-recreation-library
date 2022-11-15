@@ -2,6 +2,11 @@
     require_once "db-connection.php";
     if (isset($_POST['submit-admin-code'])) {
         $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));
+
+        if (empty($codeSubmitted)) {
+            header("Location: ../pages/admin-login.php?empty-input=1");
+            exit();
+        }
     }
 
     $codeQuery = "SELECT * 
