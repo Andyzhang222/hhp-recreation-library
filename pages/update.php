@@ -11,7 +11,7 @@
       
     <div class="album py-5">
         <div class="container">
-            <form action="">
+            <form method = "post" action="../includes/db-process.php" >
                 <?php
                     $catCountQuery = "SELECT COUNT(*) FROM `equipment_category`;";
                     $catCountResult = $conn->query($catCountQuery);
@@ -35,7 +35,7 @@
                                 $category = $queryResult['description'];
                             }
                             ?>
-                            <h2 class="fw-light"><?php echo $category; ?></h2>
+                            <h2 class="category"><?php echo $category; ?></h2>
                             <div class="g-3 p-3">
                             <?php
                                 $catQuery = "SELECT * 
@@ -61,9 +61,9 @@
                                 </div>
                             </div>
 
-                            <div class="card-body">
+                            <div class="card-body2">
                                 <p>Enter new item quantity</p>
-                                <input type="text" id = "<?php echo $code?>" class= "InputField" name = "<?php echo $code?>" value = "<?php echo $quantity?>">
+                                <input type="text" id = "<?php echo $item_id?>" class= "Input" name = "<?php echo $item_id?>" value = "<?php echo $quantity?>">
                             </div> 
 
                             </div>
@@ -78,8 +78,7 @@
                     }
                 ?>
                 <!-- button here -->
-                <button class="submit"
-                    onclick="alert('Item Quantities Updated In DataBase');">Submit</button>
+                <input type="submit" name="Update" class="submit1" value="Submit blog">
             </form>
         </div>
     </div>

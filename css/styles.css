@@ -75,17 +75,34 @@ img {
     margin-left: 10px;
 }
 
-.InputField{
-    align-items: right;
+.card-body2{
+    margin-bottom: 10px;
+    
 }
 
-.submit{
+.category{
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.Input{
+    border-radius: 25px;
+    border: 2px solid yellow;
+    padding: 20px; 
+    width: 200px;
+    height: 15px;   
+    
+}
+
+
+
+.submit1{
     width: 270px;
     height: 80px;
     border: none;
     outline: none;
     background: #2f2f2f;
-    color: #fff;
+    color: white;
     font-size: 22px;
     border-radius: 40px;
     text-align: center;
@@ -94,6 +111,8 @@ img {
     overflow: hidden;
     cursor: pointer;
 }
+
+
 
 #pg-banner{
     color:black;
