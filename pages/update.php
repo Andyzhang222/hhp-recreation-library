@@ -78,7 +78,7 @@
                     }
                 ?>
                 <!-- button here -->
-                <input type="submit" name="Update" class="submit1" value="Submit blog">
+                <input type="submit" name="Update" class="submit1" value="Submit">
             </form>
         </div>
     </div>
