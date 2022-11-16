@@ -1,8 +1,6 @@
 <?php
     require 'includes/header.php';
     require 'includes/db-connection.php';
-    $conn = OpenConn();
-    CloseConn($conn);
 ?>
 
 <section id="item-display">
@@ -40,5 +38,6 @@
 	</section>
 
 <?php
-    require "includes/footer.php"; 
+  require 'pages/inventory.php';
+  require 'includes/footer.php'; 
 ?>
