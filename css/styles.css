@@ -12,7 +12,7 @@ footer {
     padding-bottom: 50px;
 }
 
-img {
+#dal-logo {
     width: 120px;
     margin-right: 18px;
 }
@@ -29,9 +29,36 @@ img {
 }
 
 #cart-icon {
-    width: 25px;
+    width: 30px;
     margin-right: 0;
     margin-top: 5px;
+}
+
+.cart-div {
+    position: relative;
+}
+
+.shopping-items {
+    min-height: 70vh;
+    width: 70%;
+}
+
+.item-in-cart {
+    width: 32;
+    height: 32;
+}
+
+#cart-num {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffc107;
+    font-size: 13px;
+    border-left: 5px;
+    border-right: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 11px;
 }
 
 #submit-code {

@@ -29,15 +29,18 @@
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
                     </ul>
                     <div class="nav justify-content-end">
-                        <img src="../img/cart.svg" width="25" height="25" id="cart-icon">
-                        <a href="../pages/shopping-basket.php" class="nav-link link-dark px-2" id="shopping-basket">Cart</a>
+                        <div class="cart-div">
+                            <a href="../pages/shopping-cart.php" class="text-dark text-decoration-none"><img src="../img/cart.svg" width="30" height="30" id="cart-icon">
+                            <div id="cart-num" class="text-dark text-decoration-none">5</div></a>
+                        </div>
+                        <a href="../pages/shopping-cart.php" class="nav-link link-dark px-2" id="shopping-basket">Cart</a>
                     </div>
                 </div>
             </nav>
             <header class="py-3 mb-4 border-bottom">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <a href="../index.php" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                        <img src="../img/dal-logo.png" width="50">
+                        <img id="dal-logo" src="../img/dal-logo.png" width="50">
                         <span class="fs-4">HHP Recreation Library</span>
                     </a>
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
