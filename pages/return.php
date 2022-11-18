@@ -1,20 +1,84 @@
 <?php
-
+session_start();
   require "../includes/header.php";
   require_once "../includes/db-connection.php";
 
 if(isset($_POST['regBtn'])){
 
-$FirstName = filter_input(INPUT_POST,'FirstName');
-$LastName = filter_input(INPUT_POST,'LastName');
-
-$name = $LastName.$FirstName;
+$Fname = filter_input(INPUT_POST,'FirstName');
+$Lname = filter_input(INPUT_POST,'LastName');
+ $name = $Fname.' '.$Lname;
 $email = $_POST['E-mail'];
 $Item_ID = $_POST['Item_ID'];
 $QTY = $_POST['QTY'];
 
-$insertQuery = "INSERT INTO `order`
-VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 0);";
+if(empty($Fname)){
+    $Fname_error= "Please fill out this field.";
+  }
+  if(preg_match("/.*[0-9].*/", $Fname)){
+    $Fname_error= "Numerical Number can not allowed in first name";
+  }
+  if(preg_match( "/\W/",$Fname)){
+    $Fname_error = "last name can not have special character";
+  }
+
+  
+  if(empty($Lname)){
+    $Lname_error= "Please fill out this field.";
+  }
+  if(preg_match("/.*[0-9].*/", $Lname)){
+    $Lname_error= "Numerical Number can not allowed in last name";
+  }
+  if(preg_match( "/\W/",$Lname)){
+    $Lname_error = "last name can not have special character";
+  }
+
+
+  if(empty($Item_ID)){
+    $ItemID_error= "Please fill out this field.";
+  }
+  if(preg_match("/.*[a-z].*/", $QTY)){
+    $ItemID_error= " Item ID can only be the numerical number";
+  }
+  if(preg_match("/.*[A-Z].*/", $QTY)){
+    $ItemID_error= " Item ID can only be the numerical number";
+  }
+  if(preg_match( "/\W/",$QTY)){
+    $ItemID_error = "Item ID can not have special character";
+  }
+
+
+  if(empty($QTY)){
+    $QTY_error= "Please fill out this field.";
+  }
+  if(preg_match("/.*[a-z].*/", $QTY)){
+    $QTY_error= " QTY can only be the numerical number";
+  }
+  if(preg_match("/.*[A-Z].*/", $QTY)){
+    $QTY_error= " QTY can only be the numerical number";
+  }
+  if(preg_match( "/\W/",$QTY)){
+    $QTY_error = "QTY can not have special character";
+  }
+
+
+
+
+
+
+  if (empty($email)){
+    $email_error = "please enter a valid email";
+}elseif(strlen($email) - strrpos($email, '.') <= 2 || strlen($email) - strrpos($email, '.') > 6){
+    $email_error = "please enter the email with the damoin number between 2 to 5 ";
+}
+
+
+
+$valid = !isset($name_error) && !isset($email_error) &&  !isset($ItemID_error) && !isset($QTY_error);
+
+if($valid){
+  $insertQuery = "INSERT INTO `order`
+VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 1);";
 
 $insertResult = $conn->query($insertQuery);
 
@@ -25,82 +89,119 @@ if (!$insertResult) {
 if ($insertResult == true) {
 
     echo "<p>Order placed</p>";
-    header("Location: checkConfirm.php");
+    header("Location: returnConfirm.php");
     exit();
 }
+  
 
 }
+}
 ?>
-
-
-
-
-
-  <main class = "min-vh-100 bg-light">
+  <main>
+    <header>
+   
+    </header>
 
   
   <h7 class="text-center"> <br></h7>
   <h7 class="text-center"> <br></h7>
-  <h7 class="text-center"> <br></h7>
+ 
   <h7 class="text-center"> <br></h7>
   <h2 class="text-center">Return Item</h2> 
  
-    <div class = "vh-100 d-flex justify-content-center align-content-center">
-    
-
-    <form class="align-items-center" action="" method="post">
-
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" name="FirstName" value ="" action="welcome.php" method="post">
-    <div id="emailHelp" class="form-text"></div>
+  <form class="row" method="post">
 
   
+  <div class="col-4">
+    <label for="validationServer01" class="form-label">First name</label>
+    <input type="text" class="form-control <?php if(isset($Fname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Fname_error)) {echo 'is-valid';} ?>" 
+    id="validationServer01" name="FirstName"  value="<?php echo $_POST['FirstName']; ?>">
+
+    <div class="invalid-feedback">
+    <?php if(isset($Fname_error))echo $Fname_error; ?>
+    </div>
+    <div class="valid-feedback">
+    Looks good!
+    </div>
   </div>
 
+  <div class="col-md-4">
+    <label for="validationServer01" class="form-label">Last name</label>
+    <input type="text" class="form-control <?php if(isset($Lname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Lname_error)) {echo 'is-valid';} ?>" 
+    id="validationServer01" name="LastName"  value="<?php echo $_POST['LastName']; ?>">
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="LastName" value ="">
-    <div id="emailHelp" class="form-text"></div>
-
-    <?php if(isset($LastName_error))echo $LastName_error; ?>
-
+    <div class="invalid-feedback">
+    <?php if(isset($Lname_error))echo $Lname_error; ?>
+    </div>
+    <div class="valid-feedback">
+    Looks good!
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Item_ID</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Item_ID" value ="">
-    <div id="emailHelp" class="form-text"></div>
+  <div class="col-md-4">
+    <label for="validationServer01" class="form-label">Item ID</label>
+    <input type="text" class="form-control  <?php if(isset($ItemID_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn'])
+     && !isset($ItemID_error)) {echo 'is-valid';} ?>" 
+    id="validationServer01" name="Item_ID"  value="<?php echo $_POST['Item_ID']; ?>">
 
 
+    <div class="invalid-feedback">
+    <?php if(isset($ItemID_error))echo $ItemID_error; ?>
+    </div>
+    <div class="valid-feedback">
+    Looks good!
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">QTY</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="QTY" value ="">
-   
-    <?php if(isset($cp_error))echo $cp_error; ?>
-  </div>
+  <p><br></p>
+  
+  <p><br></p>
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">E-mail</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="E-mail" value ="">
-    <div id="emailHelp" class="form-text"></div>
+  <div class="col-md-6">
+    <label for="validationServer01" class="form-label">QTY</label>
+    <input type="text" class="form-control <?php if(isset($QTY_error)){echo 'is-invalid';} 
+    elseif(isset($_POST['regBtn']) && !isset($QTY_error)) {echo 'is-valid';} ?>" 
+    id="validationServer01" name="QTY"  value="<?php echo $_POST['QTY']; ?>">
 
-    <?php if(isset($email_error))echo $email_error; ?>
-  </div>
-
- 
-
-  <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
-</form>
+    <div class="invalid-feedback">
+    <?php if(isset($QTY_error))echo $QTY_error;  ?>
+    </div>
+    <div class="valid-feedback">
+    Looks good!
     </div>
 
+  </div>
+
+  <div class="col-md-6">
+    <label for="validationServer01" class="form-label">E-mail</label>
+    <input type="text" class="form-control <?php if(isset($email_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($email_error)) {echo 'is-valid';} ?> " 
+    id="validationServer01" name="E-mail"  value="<?php echo $_POST['E-mail']; ?>">
+
+    <div class="invalid-feedback">
+    <?php if(isset($email_error))echo $email_error;  ?>
+    </div>
+    <div class="valid-feedback">
+    Looks good!
+    </div>
+  </div>
+
+  
+
+<p><br></p>
+  <div class="col-md-3"> </div>
+  <div class="col-4 mx-auto">
+    <button class="btn btn-primary " name="regBtn"  type="submit">Submit</button>
+  </div>
+</form>
+  
 
 </main>
+
   <footer>
     <!-- place footer here -->
+    <?php
+  require "../includes/footer.php"
+?>
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -111,6 +212,3 @@ if ($insertResult == true) {
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
 
-<?php
-  require "../includes/footer.php"
-?>
