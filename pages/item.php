@@ -19,6 +19,8 @@
       $category = $itemInfo['category'];
       $description = $itemInfo['description'];
       $quantity = $itemInfo['quantity'];
+      $code = $itemInfo['code'];
+      $imageSrc = "../img/item-images/" . $code . ".png";
 
       $retrieveCatQuery = "SELECT * 
       FROM `equipment_category` 
@@ -42,8 +44,11 @@
     <p class="lead">Category: <?php echo $categoryDesc; ?></p>
     <p class="lead">Quantity available: <?php echo $quantity; ?></p>
 
+    <hr>
+    <br>
+
     <select class="form-select select-quant" aria-label="Default select example">
-      <option selected>Select quantity</option>
+      <option value="" selected>Select quantity</option>
       <?php
         for ($i=1; $i<=$quantity; $i++) {
           echo "<option value='$i'>$i</option>";
@@ -54,7 +59,7 @@
     <button type="button" id="form-page" class="btn-styling btn btn-warning">Request item</button>
   </div>
   <div class="col-md-5 order-md-1">
-    <svg class="item-image bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="320" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>item's photo</title><rect width="100%" height="100%" fill="#eee"/><text x="40%" y="40%" fill="#aaa" dy=".3em">item's photo here</text></svg>
+    <img class="item-image" src="<?php echo $imageSrc; ?>" alt="<?php echo $description; ?>" />
   </div>
 </div>
 

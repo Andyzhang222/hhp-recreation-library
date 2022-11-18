@@ -17,6 +17,21 @@ footer {
     margin-right: 18px;
 }
 
+.select-quant {
+    width: 70%;
+    margin-top: 10px;
+}
+
+.item-image {
+    width: 330px;
+}
+
+.item-image-main {
+    object-fit: cover;
+    width: 296.667px;
+    height: 296.667px;
+}
+
 #main-content {
     width: 70%;
     margin: auto;
@@ -133,8 +148,6 @@ footer {
     
 }
 
-
-
 .submit1{
     width: 270px;
     height: 80px;
@@ -150,8 +163,6 @@ footer {
     overflow: hidden;
     cursor: pointer;
 }
-
-
 
 #pg-banner{
     color:black;
@@ -186,9 +197,6 @@ set the pg-banner h1 text in the middle of the container*/
     padding-left: 30px;
     padding-right: 30px;
 }
-
-
-
 
 /*page-banner part:
 set the pg-banner navigation bar in the specific position*/

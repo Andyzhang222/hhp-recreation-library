@@ -44,10 +44,13 @@
                             while ($result = $catResult->fetch_assoc()) {
                                 $description = $result['description'];
                                 $item_id = $result['id'];
+                                $item_code = $result['code'];
+                                $imageSrc = "img/item-images/" . $item_code . ".png";
                                 ?>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><title>item's photo</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></a></svg>
+                        <img class="item-image-main" src="<?php echo $imageSrc ?>" />
+                        <a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"></a>
 
                         <div class="card-body">
                             <a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><p><?php echo $description; ?></p></a>
