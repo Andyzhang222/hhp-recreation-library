@@ -1,3 +1,6 @@
+<?php
+require_once "../includes/db-connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

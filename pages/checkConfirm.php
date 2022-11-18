@@ -1,3 +1,22 @@
+<?php
+session_start();
+  require "../includes/header.php";
+ 
+  require_once "../includes/db-connection.php";
+
+ 
+//  include"../pages/checkout.php";
+
+
+$a=$_SESSION['name'];
+
+
+
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -17,25 +36,29 @@
   <header>
     <!-- place navbar here -->
     <?php
-  require '../includes/header.php';
-  require '../includes/db-connection.php';
+ 
 ?>
-
-
   </header>
   <main>
 
-  <p class="text-center">checkout successfully!</P>
+  <p class="text-center display-1">
+    <?php echo $name?> Thanks! <br></P>
+
+  <p class="text-center display-1">
+    <?php echo $name?> checkout successfully!</P>
 
   </main>
+
+ 
   <footer>
-    <!-- place footer here -->
-  </footer>
-  <!-- Bootstrap JavaScript Libraries -->
   <?php
-  require 'pages/inventory.php';
+  // require 'pages/inventory.php';
   require '../includes/footer.php'; 
 ?>
+
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
   </script>
