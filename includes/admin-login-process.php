@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "db-connection.php";
     if (isset($_POST['submit-admin-code'])) {
         $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));

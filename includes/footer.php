@@ -7,6 +7,5 @@
 
 </div>
 </body>
-<script src="shopping-cart.js"></script>
 
 </html>

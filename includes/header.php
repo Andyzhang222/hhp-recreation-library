@@ -31,7 +31,15 @@
                     <div class="nav justify-content-end">
                         <div class="cart-div">
                             <a href="../pages/shopping-cart.php" class="text-dark text-decoration-none"><img src="../img/cart.svg" width="30" height="30" id="cart-icon">
-                            <div id="cart-num" class="text-dark text-decoration-none">5</div></a>
+                            <div id="cart-num" class="text-dark text-decoration-none">
+                                <?php
+                                    if (isset($_SESSION['cart'])) {
+                                        echo sizeof($_SESSION['cart']);
+                                    } else {
+                                        echo 0;
+                                    }
+                                ?>
+                            </div></a>
                         </div>
                         <a href="../pages/shopping-cart.php" class="nav-link link-dark px-2" id="shopping-basket">Cart</a>
                     </div>

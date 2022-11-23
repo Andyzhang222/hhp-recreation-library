@@ -1,6 +1,33 @@
 <?php
+  session_start();
+  if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'];
+  }
+
   require_once "../includes/db-connection.php";
   require "../includes/header.php";
+
+  $message = '';
+
+  if(isset($_GET['success'])) {
+    if ($_GET['success'] == 1) {
+      $message = '
+      <p class="alert alert-success cart-alert text-center">Item added to cart.</p>
+      ';
+    }
+
+    if ($_GET['success'] == 0) {
+      $message = '
+      <p class="alert alert-danger cart-alert text-center">Please choose a valid quantity.</p>
+      ';
+    }
+
+    if ($_GET['success'] == 2) {
+      $message = '
+      <p class="alert alert-danger cart-alert text-center">Quantity surpassed quantity available.</p>
+      ';
+    }
+  }
 
   if (isset($_GET["id"])) {
     $itemID = $_GET["id"];
@@ -34,6 +61,7 @@
         $categoryDesc = $queryResult['description'];
       }
     }
+  }
 
   
 ?>
@@ -45,18 +73,22 @@
     <p class="lead">Quantity available: <?php echo $quantity; ?></p>
 
     <hr>
-    <br>
 
-    <select class="form-select select-quant" aria-label="Default select example">
-      <option value="" selected>Select quantity</option>
-      <?php
-        for ($i=1; $i<=$quantity; $i++) {
-          echo "<option value='$i'>$i</option>";
-        }
-      ?>
-    </select>
-    
-    <button type="button" id="form-page" class="btn-styling btn btn-warning">Request item</button>
+    <form method="post" id="item-to-cart" action="../includes/cart-processing.php">
+      <select name="item-quantity" class="form-select select-quant" aria-label="Default select example">
+        <option value="">Select quantity</option>
+        <?php
+          for ($i=1; $i<=$quantity; $i++) {
+            echo "<option value='$i'>$i</option>";
+          }
+        ?>
+      </select>
+
+      <input type="hidden" name="hidden-id" value="<?php echo $itemID; ?>" />
+      <input type="submit" id="add-to-cart" name="add-to-cart" class="btn-styling btn btn-warning" value="Add to cart" />
+    </form>
+
+    <?php echo $message; ?>
   </div>
   <div class="col-md-5 order-md-1">
     <img class="item-image" src="<?php echo $imageSrc; ?>" alt="<?php echo $description; ?>" />
@@ -64,12 +96,5 @@
 </div>
 
 <?php
-  }
-    require "../includes/footer.php";
+  require "../includes/footer.php";
 ?>
-
-<script type="text/javascript">
-    document.getElementById("form-page").onclick = function () {
-        location.href = "form-page.php";
-    };
-</script>

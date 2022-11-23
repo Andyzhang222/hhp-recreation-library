@@ -1,6 +1,7 @@
 <?php
-  require_once "../includes/db-connection.php";
-  require "../includes/header.php";
+    session_start();
+    require_once "../includes/db-connection.php";
+    require "../includes/header.php";
 ?>
 
 <div id="admin-portal">

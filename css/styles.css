@@ -3,7 +3,6 @@ footer {
     position: absolute;
     padding-top: 10px;
     border-top: 20px;
-    bottom: 0;
 }
 
 #div-footer {
@@ -30,6 +29,7 @@ footer {
     object-fit: cover;
     width: 296.667px;
     height: 296.667px;
+    border-radius: 5px;
 }
 
 #main-content {
@@ -39,8 +39,27 @@ footer {
 }
 
 #admin-form {
-    min-height: 70vh;
+    min-height: 73vh;
     vertical-align: middle;
+}
+
+.button-cart {
+    margin-bottom: 25px;
+}
+
+.list-group-item {
+    border-top-width: 1px !important;
+}
+
+#update-quant {
+    resize: none;
+    width: 15%;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    display: block;
 }
 
 #cart-icon {
@@ -54,12 +73,31 @@ footer {
 }
 
 .shopping-items {
-    min-height: 65vh;
+    min-height: 73vh;
+    width: 60%;
+    margin: auto;
+}
+
+#clear {
+    margin-right: 15px;
+}
+
+#cart-empty {
+    text-align: center;
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.cart-alert {
+    margin-top: 15px;
+    width: 40%;
 }
 
 .item-in-cart {
-    width: 32;
-    height: 32;
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
 }
 
 #cart-num {
@@ -67,12 +105,12 @@ footer {
     top: 0;
     right: 0;
     background-color: #ffc107;
-    font-size: 13px;
+    font-size: 12px;
     border-left: 5px;
     border-right: 5px;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 11px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 12px;
 }
 
 #submit-code {
@@ -92,7 +130,7 @@ footer {
 }
 
 #admin-portal {
-    min-height: 70vh;
+    min-height: 73vh;
 }
 
 #intro-p {
@@ -121,7 +159,7 @@ footer {
 }
 
 .item-display {
-    min-height: 70vh;
+    min-height: 73vh;
     vertical-align: middle;
 }
 

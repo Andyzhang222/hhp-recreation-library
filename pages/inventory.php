@@ -49,8 +49,7 @@
                                 ?>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img class="item-image-main" src="<?php echo $imageSrc ?>" />
-                        <a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"></a>
+                        <a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><img class="item-image-main" src="<?php echo $imageSrc ?>" /></a>
 
                         <div class="card-body">
                             <a href="pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><p><?php echo $description; ?></p></a>
