@@ -18,7 +18,7 @@
   if (isset($_POST['update'])) {
     $id = $_POST['remove-id'];
     $maxQuantity = $_POST['max-quant'];
-    $newQuant = $_POST['update-quant'];
+    $newQuant = stripslashes(htmlspecialchars($_POST['update-quant']));
     if ($newQuant > $maxQuantity) {
       $message = '
       <p class="alert alert-danger text-center">Quantity surpassed quantity available.</p>
