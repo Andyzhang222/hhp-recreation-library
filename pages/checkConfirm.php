@@ -8,7 +8,7 @@ session_start();
 //  include"../pages/checkout.php";
 
 
-$a=$_SESSION['name'];
+
 
 
 
@@ -45,7 +45,7 @@ $a=$_SESSION['name'];
     <?php echo $name?> Thanks! <br></P>
 
   <p class="text-center display-1">
-    <?php echo $name?> checkout successfully!</P>
+    <?php echo $_SESSION["name"]?> checkout successfully!</P>
 
   </main>
 
