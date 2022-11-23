@@ -1,7 +1,21 @@
 <?php
     require '../includes/header.php';
     require '../includes/db-connection.php';
-	?>
+
+    header('location: ../pages/remove-item-khaleda.php');
+
+	if (isset($_POST['remove-button'])) {
+		$itemID = $_POST['id'];
+		$removeQuery = "DELETE FROM `equipment_type` WHERE id='$itemID';";
+		$removeResult = $conn->query($removeQuery);
+
+		if (!$removeResult) {
+			echo "Deletion failed";
+		} else {
+			echo "Success.";
+		}
+	}
+?>
 
 	<div>
 		<table width= 100%>
@@ -28,9 +42,9 @@
 							<td><?php echo $row['quantity']; ?></td>
 							
 							<td>
-								<form method="post" action="../includes/delete.php">
-									<input type="submit" value="Delete" />
-									<input type="hidden" value="<?php echo $row['id']; ?>" />
+								<form method="post" action="remove-item.php">
+									<input type="submit" name="remove-button" value="Delete" />
+									<input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
 								</form>
 							</td>
 						</tr>
