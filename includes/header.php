@@ -17,21 +17,43 @@ if($_POST["q"] !== "null"){
     </head>
 
     <body>
-        <div class="container py-3" id="main-content">
-            <header>
-                <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-                    <img src="http://localhost:8888/img/dal-logo.png"> 
-                    <span class="fs-4"><a href="http://localhost:8888/" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
-
-                    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/">Equipment</a>
-                        <a class="py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/admin-login.php">Admin</a>
-                    </nav>
-                    <form action="../pages/search.php" method="POST" id="searchForm">
-                        <input type="text" name="q" id="searchBar" placeholder="Search..." maxlength="30" autocomplete="on"/>
-                        <button type="submit" name="submit-search" id="searchBtn">Search</button>
+        <div class="container" id="main-content">
+            <nav class="py-2 border-bottom">
+                <div class="container d-flex flex-wrap">
+                    <ul class="nav me-auto">
+                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2">Equipment</a></li>
+                        <li class="nav-item"><a href="../pages/admin-login.php" class="nav-link link-dark px-2">Admin</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
+                    </ul>
+                    <div class="nav justify-content-end">
+                        <div class="cart-div">
+                            <a href="../pages/shopping-cart.php" class="text-dark text-decoration-none"><img src="../img/cart.svg" width="30" height="30" id="cart-icon">
+                            <div id="cart-num" class="text-dark text-decoration-none">
+                                <?php
+                                    if (isset($_SESSION['cart'])) {
+                                        echo sizeof($_SESSION['cart']);
+                                    } else {
+                                        echo 0;
+                                    }
+                                ?>
+                            </div></a>
+                        </div>
+                        <a href="../pages/shopping-cart.php" class="nav-link link-dark px-2" id="shopping-basket">Cart</a>
+                    </div>
+                </div>
+            </nav>
+            <header class="py-3 mb-4 border-bottom">
+                <div class="container d-flex flex-wrap justify-content-center">
+                    <a href="../index.php" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                        <img id="dal-logo" src="../img/dal-logo.png" width="50">
+                        <span class="fs-4">HHP Recreation Library</span>
+                    </a>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
+                </div>
             </header>
 <?php                
 } else {
