@@ -13,14 +13,33 @@
     <form class="align-items-center" action="" method="post">
 
   <div class="mb-3">
-    <label class="form-label">Current Passcode</label>
-    <input type="text" class="form-control" id="inputName" name="FirstName" method="post">
-    <label for="exampleInputPassword1" class="form-label">Additional Passcode</label>
+    <label for="exampleInputPassword1" class="form-label">New Admin Code</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
 </div>
-
-  <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
+  <input id="submit-code" class="btn btn-lg btn-warning" type="submit" value="Submit" name="submit-admin-code">
 </form>
+<?php
+  
+  if (isset($_POST['submit-admin-code'])) {
+      $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));
+      $codeQuery = "SELECT * 
+      FROM `admin_code`
+      WHERE code=$codeSubmitted
+      AND code_status LIKE 'ACTIVE';";
+
+      $codeResult = $conn->query($codeQuery);
+      if ($codeResult->num_rows > 0) {
+        echo "<p class='text-dark'>That is already an admin code, please choose another one</p>";
+      }
+      else{
+        
+      }
+       
+  
+
+
+  }
+?>
     </div>
        
     </div>
