@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 21, 2022 at 03:28 PM
+-- Generation Time: Nov 23, 2022 at 03:58 PM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -65,7 +65,7 @@ INSERT INTO `equipment_category` (`id`, `code`, `description`) VALUES
 (5, 'REC_SPECIFIC', 'Dalhousie Recreation-specific items'),
 (6, 'ELECTRONICS', 'Electronics'),
 (7, 'GAME_SUPPLIES', 'Icebreaker and game supplies'),
-(8, 'MISC', 'Miscellaneous items'),
+(8, 'MISC', 'Miscellanous'),
 (9, 'ORG_STATIONARY', 'Organizational/stationary items​​​​​​​'),
 (10, 'REC_LEARNING_TOOLS', 'Recreation-based learning tools'),
 (11, 'SPORTS', 'Sports equipment');
@@ -93,12 +93,7 @@ INSERT INTO `equipment_type` (`id`, `code`, `category`, `description`, `quantity
 (2, 'CANVAS', 2, 'Canvases', 3),
 (3, 'PAINT', 2, 'Paint (various colours)', 4),
 (4, 'SCISSOR', 2, 'Scissors', 2),
-(5, 'SLEEP_BAG', 3, 'Sleeping bags', 3),
-(6, 'FOOTBALL', 3, 'Footballs', 5),
-(7, 'LIGHT', 3, 'Flashlights and Lanterns', 6),
-(8, 'PADDLE', 3, 'Paddles', 0),
-(9, 'BOAT_ROPE', 3, 'Boat rope (10ft. & 2m)', 2),
-(10, 'TARP', 3, 'Tarps', 1),
+(9, 'BOAT_ROPE_10ft', 3, 'Boat rope (10ft)', 1),
 (11, 'PLAYING_CARD', 4, 'Playing cards', 2),
 (12, 'CRANIUM_CARD', 4, 'Cranium cards', 1),
 (13, 'CRIBBAGE', 4, 'Cribbage board', 1),
@@ -106,41 +101,35 @@ INSERT INTO `equipment_type` (`id`, `code`, `category`, `description`, `quantity
 (15, 'DICE', 4, 'Dice', 6),
 (16, 'UNO', 4, 'Uno Cards', 2),
 (17, 'REC_SHIRT', 5, 'Dalhousie Recreation T-Shirts', 2),
-(18, 'CAMERA', 6, 'Camera', 1),
+(18, 'CAMERA', 6, 'Nikon Coolpix Camera', 1),
 (19, 'VOICE_RECORDER', 6, 'Voice recorder', 1),
-(20, 'VIDEO_CAMERA', 6, 'Video Camera', 1),
 (21, 'BALLOON', 7, 'Balloons', 20),
 (22, 'BEAN_BAG', 7, 'Bean bags', 3),
-(23, 'BLINDFOLD', 7, 'Blindfolds', 4),
 (24, 'BUBBLE_WAND', 7, 'Bubble wands', 5),
 (25, 'PROP', 7, 'Costumes and skit props', 8),
 (26, 'HULA_HOOP', 7, 'Hula Hoops', 4),
 (27, 'VOLLEYBALL', 7, 'Ice breaker volleyball', 2),
 (28, 'BUCKET', 7, 'Large white buckets', 4),
 (29, 'MINI_CONE', 7, 'Mini cones', 5),
-(30, 'PLAYDOUGH', 7, 'Playdough', 2),
-(31, 'POOL_NOODLE', 7, 'Pool Noodles', 7),
-(32, 'CHALK', 7, 'Sidewalk chalk', 9),
-(33, 'CANDLE', 8, 'Birthday candles', 21),
-(34, 'CAR_BRUSH', 8, 'Car brushes', 3),
-(35, 'FIRST_AID', 8, 'First aid supplies', 3),
-(36, 'GATORADE_CONTAINER', 8, 'Gatorade container', 15),
-(37, 'GLOW_STICK', 8, 'Glow sticks and sparklers', 6),
-(38, 'MILK_CRATE', 8, 'Milk crates', 8),
 (39, 'PENCIL', 9, 'Carpentry Pencils', 4),
-(40, 'INDEX_CARD', 9, 'Index Cards', 5),
 (41, 'LANYARD', 9, 'Lanyards', 8),
 (42, 'POST_IT', 9, 'Post-It notes', 9),
 (43, 'SELFIE_STICK', 9, 'Selfie Stick', 1),
 (44, 'TAPE', 9, 'Tape', 24),
-(45, 'TY_CARD', 9, 'Thank you Cards', 3),
 (46, 'REC_MH_GAME', 10, 'Recreation for Mental Health game', 1),
 (47, 'BASKETBALL', 11, 'Basketballs', 4),
 (48, 'BOCCE', 11, 'Bocce ball sets', 2),
 (49, 'FOOTBALL', 11, 'Footballs', 7),
 (50, 'FRISBEE', 11, 'Frisbee', 3),
 (51, 'SOCCER', 11, 'Soccer Balls', 2),
-(52, 'TENNIS_BALL', 11, 'Tennis Balls', 10);
+(52, 'TENNIS_BALL', 11, 'Tennis Balls', 10),
+(53, 'GOGGLES', 1, 'Reduced visibility goggles', 1),
+(54, 'BLIND_FOLD', 1, 'Blindfolds', 2),
+(55, 'SHARPIE', 2, 'Sharpie Markers (set of 24)', 2),
+(56, 'CONNECT_4', 4, 'Connect 4 Game', 1),
+(57, 'TILE_RUMMY', 4, 'Tile Rummy Game', 1),
+(58, 'JENGA', 4, 'Giant/yard Jenga game', 1),
+(59, 'BOAT_ROPE_2m', 3, 'Boat rope (2m)', 3);
 
 -- --------------------------------------------------------
 
@@ -222,6 +211,18 @@ ALTER TABLE `status`
 --
 ALTER TABLE `equipment_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `equipment_type`
+--
+ALTER TABLE `equipment_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
