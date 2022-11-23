@@ -1,10 +1,11 @@
 <?php
-session_start();
   require "../includes/header.php";
   require_once "../includes/db-connection.php";
 
 if(isset($_POST['regBtn'])){
 
+  
+session_start();
 $Fname = filter_input(INPUT_POST,'FirstName');
 $Lname = filter_input(INPUT_POST,'LastName');
  $name = $Fname.' '.$Lname;
@@ -74,9 +75,12 @@ if(empty($Fname)){
 
 
 
-$valid = !isset($name_error) && !isset($email_error) &&  !isset($ItemID_error) && !isset($QTY_error);
+$valid = !isset($Fame_error) && !isset($Lname_error) && !isset($email_error) &&  !isset($ItemID_error) && !isset($QTY_error);
 
 if($valid){
+
+  $_SESSION["name"] = "$name";
+
   $insertQuery = "INSERT INTO `order`
 VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 1);";
 
@@ -211,4 +215,3 @@ if ($insertResult == true) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-
