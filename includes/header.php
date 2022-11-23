@@ -1,14 +1,13 @@
+<?php
+if($_POST["q"] !== "null"){
+    require "db-connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>HHP Recreation Library</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        </style>
 
         <link rel="stylesheet" href="../css/styles.css">
 
@@ -21,14 +20,21 @@
         <div class="container py-3" id="main-content">
             <header>
                 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-                    <img src="../img/dal-logo.png"> 
-                    <span class="fs-4"><a href="../index.php" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
+                    <img src="http://localhost:8888/img/dal-logo.png"> 
+                    <span class="fs-4"><a href="http://localhost:8888/" class="text-dark text-decoration-none">HHP Recreation Library</a></span>
 
                     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="../index.php">Equipment</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="../pages/return-page.php">Return</a>
-                        <a class="py-2 text-dark text-decoration-none" href="../pages/admin-login.php">Admin</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="http://localhost:8888/">Equipment</a>
+                        <a class="py-2 text-dark text-decoration-none" href="http://localhost:8888/pages/admin-login.php">Admin</a>
                     </nav>
-                </div>
+                    <form action="../pages/search.php" method="POST" id="searchForm">
+                        <input type="text" name="q" id="searchBar" placeholder="Search..." maxlength="30" autocomplete="on"/>
+                        <button type="submit" name="submit-search" id="searchBtn">Search</button>
+                    </form>
             </header>
+<?php                
+} else {
+    header("Location: index.php");
+  }
+?>
