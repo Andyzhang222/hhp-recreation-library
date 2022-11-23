@@ -1,6 +1,7 @@
 <?php
-    require '../includes/header.php';
-    require '../includes/db-connection.php';
+  session_start();
+  require '../includes/header.php';
+  require '../includes/db-connection.php';
 ?>
 <h2 class="text-center">Return Item</h2> 
  

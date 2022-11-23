@@ -1,9 +1,8 @@
 <?php
-  require_once "../includes/db-connection.php";
-  require "../includes/header.php";
- 
-
-  ?>
+    session_start();
+    require_once "../includes/db-connection.php";
+    require "../includes/header.php";
+?>
 
 <main>
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -11,7 +10,7 @@
       
     <div class="album py-5">
         <div class="container">
-            <form method = "post" action="../includes/db-process.php" >
+            <form method = "post" action="../includes/update-quantity.php" >
                 <?php
                     $catCountQuery = "SELECT COUNT(*) FROM `equipment_category`;";
                     $catCountResult = $conn->query($catCountQuery);
