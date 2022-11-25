@@ -4,9 +4,7 @@
  
 
   ?>
-    require '../includes/header.php';
-    require '../includes/db-connection.php';
-?>
+    
 
 <main>
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
