@@ -50,8 +50,9 @@ if($_POST["q"] !== "null"){
                         <img id="dal-logo" src="../img/dal-logo.png" width="50">
                         <span class="fs-4">HHP Recreation Library</span>
                     </a>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <form action="../pages/search.php" method="POST" id="searchForm">
+                        <input type="text" name="q" id="searchBar" placeholder="Search..." maxlength="30" autocomplete="on"/>
+                        <button type="submit" name="submit-search" id="searchBtn">Search</button>
                     </form>
                 </div>
             </header>

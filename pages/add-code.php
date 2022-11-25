@@ -19,20 +19,19 @@
   <input id="submit-code" class="btn btn-lg btn-warning" type="submit" value="Submit" name="submit-admin-code">
 </form>
 <?php
-  
+
   if (isset($_POST['submit-admin-code'])) {
       $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));
       $codeQuery = "SELECT * 
       FROM `admin_code`
-      WHERE code=$codeSubmitted
-      AND code_status LIKE 'ACTIVE';";
+      WHERE code=$codeSubmitted;";
 
       $codeResult = $conn->query($codeQuery);
       if ($codeResult->num_rows > 0) {
         echo "<p class='text-dark'>That is already an admin code, please choose another one</p>";
       }
       else{
-      
+        echo "<p class='text-dark'> New admin code successfully added!</p>";
       }
        
   
