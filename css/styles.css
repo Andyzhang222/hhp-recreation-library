@@ -1,13 +1,8 @@
-body {
-    min-height: 100vh;
-}
-
 footer {
     width: 100%;
     position: absolute;
     padding-top: 10px;
     border-top: 20px;
-    bottom: 0;
 }
 
 #div-footer {
@@ -16,28 +11,126 @@ footer {
     padding-bottom: 50px;
 }
 
-img {
+#dal-logo {
     width: 120px;
     margin-right: 18px;
+}
+
+.select-quant {
+    width: 70%;
+    margin-top: 10px;
+}
+
+.item-image {
+    width: 330px;
+}
+
+.item-image-main {
+    object-fit: cover;
+    width: 296.667px;
+    height: 296.667px;
+    border-radius: 5px;
 }
 
 #main-content {
     width: 70%;
     margin: auto;
+    min-height: 70vh;
 }
 
 #admin-form {
-    padding-top: 20%;
-    padding-bottom: 20%;
+    min-height: 73vh;
+    vertical-align: middle;
+}
+
+.button-cart {
+    margin-bottom: 25px;
+}
+
+.list-group-item {
+    border-top-width: 1px !important;
+}
+
+#update-quant {
+    resize: none;
+    width: 15%;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    display: block;
+}
+
+#cart-icon {
+    width: 30px;
+    margin-right: 0;
+    margin-top: 5px;
+}
+
+.cart-div {
+    position: relative;
+}
+
+.shopping-items {
+    min-height: 73vh;
+    width: 60%;
+    margin: auto;
+}
+
+#clear {
+    margin-right: 15px;
+}
+
+#cart-empty {
+    text-align: center;
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.cart-alert {
+    margin-top: 15px;
+    width: 40%;
+}
+
+.item-in-cart {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+}
+
+#cart-num {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffc107;
+    font-size: 12px;
+    border-left: 5px;
+    border-right: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 12px;
 }
 
 #submit-code {
     border-bottom: 10px;
 }
 
+#wrong-password {
+    width: 48%;
+    margin: auto;
+    margin-bottom: 14px;
+}
+
+#empty-input {
+    width: 20%;
+    margin: auto;
+    margin-bottom: 14px;
+}
+
 #admin-portal {
-    padding-top: 8%;
-    padding-bottom: 10%;
+    min-height: 73vh;
 }
 
 #intro-p {
@@ -66,9 +159,8 @@ img {
 }
 
 .item-display {
-    padding-left: 5%;
-    padding-bottom: 10%;
-    padding-top: 5%;
+    min-height: 73vh;
+    vertical-align: middle;
 }
 
 .item-image {
@@ -114,8 +206,6 @@ img {
     cursor: pointer;
 }
 
-
-
 #pg-banner{
     color:black;
     font-size:x-large;
@@ -149,9 +239,6 @@ set the pg-banner h1 text in the middle of the container*/
     padding-left: 30px;
     padding-right: 30px;
 }
-
-
-
 
 /*page-banner part:
 set the pg-banner navigation bar in the specific position*/
