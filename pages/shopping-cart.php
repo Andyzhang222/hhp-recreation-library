@@ -12,7 +12,7 @@
 
   if (isset($_POST['remove'])) {
     unset($_SESSION['cart'][$_POST['remove-id']]);
-    header("Location: shopping-cart.php");
+    header("Location: shopping-cart.php?success=2");
   }
 
   if (isset($_POST['update'])) {
@@ -82,6 +82,10 @@
     if (isset($_GET['success'])) {
       if ($_GET['success'] == 1) {
         echo '<p class="alert alert-success text-center">Cart updated.</p>';
+      } 
+
+      if ($_GET['success'] == 2) {
+        echo '<p class="alert alert-success text-center">Item removed.</p>';
       }
     }
   ?>
@@ -89,7 +93,7 @@
   <div class='d-flex justify-content-end button-cart'>
     <form method="POST" action="shopping-cart.php">
       <input id='clear' class='btn btn-lg btn-warning' type='submit' value='Clear cart' name='clear'>
-      <input id='checkout' class='btn btn-lg btn-success' type='submit' value='Proceed to checkout' name='cart-checkout'>
+      <a href="#" id='checkout' class='btn btn-lg btn-success'>Proceed to checkout</a>
     </form>
   </div>
 </div>

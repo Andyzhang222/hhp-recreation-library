@@ -50,3 +50,7 @@
         document.getElementById("dropdown-button").dropdown("toggle");
     };
 </script>
+
+<?php
+  require "../includes/footer.php";
+?>

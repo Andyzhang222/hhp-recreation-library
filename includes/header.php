@@ -23,7 +23,6 @@
                 <div class="container d-flex flex-wrap">
                     <ul class="nav me-auto">
                         <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2">Equipment</a></li>
                         <li class="nav-item"><a href="../pages/admin-login.php" class="nav-link link-dark px-2">Admin</a></li>
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>

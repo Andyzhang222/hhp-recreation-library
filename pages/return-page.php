@@ -57,3 +57,7 @@
   <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
 </form>
     </div>
+
+<?php
+  require "../includes/footer.php";
+?>

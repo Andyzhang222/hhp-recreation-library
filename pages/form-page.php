@@ -58,4 +58,6 @@
 </form>
     </div>
 
-
+<?php
+  require "../includes/footer.php";
+?>
