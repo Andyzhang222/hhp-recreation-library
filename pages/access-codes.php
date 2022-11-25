@@ -17,8 +17,10 @@
             
             if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                    echo $row['code'] . " | Code Status - " ;
-                    echo $row['code_status'] . "<br>";
+                    echo " Code Status - ";
+                    echo $row['code_status'] . "  |  " ;
+                    echo $row['code'] . "  | Expiry Date - ";
+                    echo $row['expire_date'] . " <br>";
 
                 }
 
