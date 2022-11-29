@@ -26,6 +26,7 @@
                         <li class="nav-item"><a href="../pages/admin-login.php" class="nav-link link-dark px-2">Admin</a></li>
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
                         <li class="nav-item"><a href="../pages/about.php" class="nav-link link-dark px-2">About</a></li>
+                        <li class="nav-item"><a href="../pages/return.php" class="nav-link link-dark px-2">Returns</a></li>
                     </ul>
                     <div class="nav justify-content-end">
                         <div class="cart-div">
