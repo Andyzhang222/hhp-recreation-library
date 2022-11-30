@@ -18,7 +18,7 @@
             <div class="card-body">
                 <button type="button" id="add-item" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Add new item</button>
                 <button type="button" id ="update-quantity" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Update item quantity</button>
-                <button type="button" id="remove-item" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</button>
+                <a href="remove-item.php" id="remove-item" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</a>
             </div>
             </div>
         </div>
