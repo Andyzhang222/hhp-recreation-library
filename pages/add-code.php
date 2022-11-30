@@ -10,35 +10,11 @@
         <div class = "vh-100 d-flex justify-content-center align-content-center">
     
 
-    <form class="align-items-center" action="" method="post">
+<form class="align-items-center" action="../includes/new-admin-code.php" method="POST">
 
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">New Admin Code</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
+    <label for="new-code-to-add" class="form-label">New Admin Code</label>
+    <input type="text" class="form-control" id="code-input" name="code" placeholder="Enter code..." maxlength=6>
 </div>
-  <input id="submit-code" class="btn btn-lg btn-warning" type="submit" value="Submit" name="submit-admin-code">
+  <button type="submit" id="submit-code" name="submit">Create new code</button>
 </form>
-<?php
-
-  if (isset($_POST['submit-admin-code'])) {
-      $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));
-      $codeQuery = "SELECT * 
-      FROM `admin_code`
-      WHERE code=$codeSubmitted;";
-
-      $codeResult = $conn->query($codeQuery);
-      if ($codeResult->num_rows > 0) {
-        echo "<p class='text-dark'>That is already an admin code, please choose another one</p>";
-      }
-      else{
-        echo "<p class='text-dark'> New admin code successfully added!</p>";
-      }
-       
-  
-
-
-  }
-?>
-    </div>
-       
-    </div>

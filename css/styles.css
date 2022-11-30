@@ -302,6 +302,12 @@ body {
 nav  {
     margin-right: 2%;
 }
+#submit-code {
+    border: 2px solid #000000;
+    font-size: 16px;
+    padding: 10px;
+    background: #f1d829;
+}
 
 
 
