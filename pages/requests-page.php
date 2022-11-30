@@ -1,3 +1,5 @@
+
+
 <?php
   require '../includes/header.php';
   require '../includes/db-connection.php';
@@ -9,8 +11,5 @@
 
         <div class = "vh-100 d-flex justify-content-center align-content-center">
     
-    </div>
-
-    
-       
+    </div>  
     </div>

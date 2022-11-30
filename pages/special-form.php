@@ -1,3 +1,13 @@
+<?php
+
+
+if(isset($_POST["regBtn"])) {
+  mail("hl767705@dal.ca", "Here is the subject line",
+  $_POST["Iventory"]. "From: hl767705@dal.ca");
+}
+
+
+?>
 
 <?php
   session_start();
@@ -32,7 +42,7 @@
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Item</label>
-    <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Iventory">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Iventory">
     <div id="emailHelp" class="form-text"></div>
 
     <?php if(isset($password_error))echo $password_error; ?>
@@ -40,7 +50,7 @@
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">QTY</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
+    <input type="text" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
    
     <?php if(isset($cp_error))echo $cp_error; ?>
   </div>
