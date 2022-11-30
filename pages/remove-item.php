@@ -1,8 +1,6 @@
 <?php
     require '../includes/header.php';
-    require '../includes/db-connection.php';
-
-    header('location: ../pages/remove-item-khaleda.php');
+    require_once '../includes/db-connection.php';
 
 	if (isset($_POST['remove-button'])) {
 		$itemID = $_POST['id'];
@@ -43,7 +41,7 @@
 							
 							<td>
 								<form method="post" action="remove-item.php">
-									<input type="submit" name="remove-button" value="Delete" />
+									<input onclick="return confirm('Are you sure! want to delete this data? Once deleted, you will not be able to recover this.')" type="submit" name="remove-button" value="Delete" />
 									<input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
 								</form>
 							</td>
