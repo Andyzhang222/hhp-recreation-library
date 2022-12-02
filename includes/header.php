@@ -22,7 +22,7 @@
             <nav class="py-2 border-bottom">
                 <div class="container d-flex flex-wrap">
                     <ul class="nav me-auto">
-                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2">Equipment</a></li>
+                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
                         <li class="nav-item"><a href="../pages/admin-login.php" class="nav-link link-dark px-2">Admin</a></li>
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
                         <li class="nav-item"><a href="../pages/about.php" class="nav-link link-dark px-2">About</a></li>
@@ -51,8 +51,8 @@
                         <img id="dal-logo" src="../img/dal-logo.png" width="50">
                         <span class="fs-4">HHP Recreation Library</span>
                     </a>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" method="post" action="../pages/search.php">
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" name="search-keywords">
                     </form>
                 </div>
             </header>
