@@ -22,10 +22,10 @@ if($_POST["q"] !== "null"){
                 <div class="container d-flex flex-wrap">
                     <ul class="nav me-auto">
                         <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="../index.php" class="nav-link link-dark px-2">Equipment</a></li>
                         <li class="nav-item"><a href="../pages/admin-login.php" class="nav-link link-dark px-2">Admin</a></li>
                         <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
+                        <li class="nav-item"><a href="../pages/about.php" class="nav-link link-dark px-2">About</a></li>
+                        <li class="nav-item"><a href="../pages/return.php" class="nav-link link-dark px-2">Returns</a></li>
                     </ul>
                     <div class="nav justify-content-end">
                         <div class="cart-div">
@@ -50,9 +50,8 @@ if($_POST["q"] !== "null"){
                         <img id="dal-logo" src="../img/dal-logo.png" width="50">
                         <span class="fs-4">HHP Recreation Library</span>
                     </a>
-                    <form action="../pages/search.php" method="POST" id="searchForm">
-                        <input type="text" name="q" id="searchBar" placeholder="Search..." maxlength="30" autocomplete="on"/>
-                        <button type="submit" name="submit-search" id="searchBtn">Search</button>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" method="post" action="../pages/search.php">
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" name="search-keywords">
                     </form>
                 </div>
             </header>

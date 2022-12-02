@@ -89,7 +89,7 @@
   <div class='d-flex justify-content-end button-cart'>
     <form method="POST" action="shopping-cart.php">
       <input id='clear' class='btn btn-lg btn-warning' type='submit' value='Clear cart' name='clear'>
-      <input id='checkout' class='btn btn-lg btn-success' type='submit' value='Proceed to checkout' name='cart-checkout'>
+      <a href="checkout.php" id='checkout' class='btn btn-lg btn-success' name='cart-checkout'>Proceed to checkout</a>
     </form>
   </div>
 </div>

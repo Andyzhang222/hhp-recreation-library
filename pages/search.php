@@ -1,37 +1,55 @@
 <?php
-    require '../includes/header.php';
-    require '../includes/db-connection.php';
-?>
+    session_start();
+    require "../includes/header.php";
 
-<h1>Search page</h1>
-<link rel="stylesheet" href="../css/styles.css">
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $searchKey = htmlspecialchars(stripslashes(trim($_POST['search-keywords'])));
 
-<?php
+        require_once "../includes/db-connection.php";
 
-    if (isset($_POST['submit-search'])){
-        $search = mysqli_real_escape_string($conn, $_POST['q']);
-
-        $searchQuery = "SELECT * FROM `equipment_type` WHERE description LIKE '%$search%';";
-        $searchResult = $conn->query($searchQuery);
-                    
-        if ($searchResult->num_rows == 0) {
-            echo "<p>No item returned.</p>";
+        if (empty($searchKey)) {
+            header("Location: ../index.php?search-empty=1");
+            exit();
         } else {
-        while ($result = $searchResult->fetch_assoc()) {
-            $description = $result['description'];
-            $item_id = $result['id'];
+            $searchQuery = "SELECT * FROM `equipment_type` WHERE description LIKE '%$searchKey%';";
+            $searchResult = $conn->query($searchQuery);
             ?>
-            <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><a href="http://localhost:8888/pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><title>item's photo</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></a></svg>
-
-                        <div class="card-body">
-                            <a href="http://localhost:8888/pages/item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><p><?php echo $description; ?></p></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="album py-5 search-res">
+                <div class="container">
+                    <h2 class="fw-light text-center">Search Result</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
+            
         <?php
-        }
+            if ($searchResult->num_rows == 0) {
+                echo "<p class='alert alert-warning'>There is no item with that name.</p>";
+            } else {
+                while ($result = $searchResult->fetch_assoc()) {
+                    $description = $result['description'];
+                    $item_id = $result['id'];
+                    $item_code = $result['code'];
+                    $imageSrc = "../img/item-images/" . $item_code . ".png";
+                    ?>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <a href="item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><img class="item-image-main" src="<?php echo $imageSrc ?>" /></a>
+
+                                <div class="card-body">
+                                    <a href="item.php?id=<?php echo $item_id?>" class="text-dark align-items-center text-center"><p><?php echo $description; ?></p></a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                }
+            }
+            ?>
+
+            </div>
+            </div>
+            </div>
+
+            <?php
         }
     }
-?> 
+
+    require "../includes/footer.php";
+?>
