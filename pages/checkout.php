@@ -81,8 +81,7 @@ if($valid){
 
   $_SESSION["name"] = "$name";
 
-  $insertQuery = "INSERT INTO `order`
-VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 0);";
+  $insertQuery = "INSERT INTO `order`VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 0);";
 
 $insertResult = $conn->query($insertQuery);
 
@@ -94,6 +93,7 @@ if ($insertResult == true) {
 
     echo "<p>Order placed</p>";
     header("Location: checkConfirm.php");
+    
     exit();
 }
   

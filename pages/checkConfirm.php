@@ -7,6 +7,26 @@ session_start();
  
 //  include"../pages/checkout.php";
 
+if(isset($_POST['regBtn'])){
+
+
+
+  
+  $to = "reclib@dal.ca";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: webmaster@example.com" . "\r\n" . "CC: somebodyelse@exampl.com";
+
+mail($to,$subject,$txt,$headers);
+
+
+echo "<p>send successfully!</p>";
+
+}
+
+
+
+
 
 
 
@@ -46,6 +66,47 @@ session_start();
 
   <p class="text-center display-1">
     <?php echo $_SESSION["name"]?> checkout successfully!</P>
+
+    <form class="row" method="post">
+
+  
+  <div class="col-4">
+    
+  </div>
+
+  <div class="col-md-4">
+    
+  </div>
+
+  <div class="col-md-4">
+    
+  </div>
+
+  <p><br></p>
+  
+  <p><br></p>
+
+  <div class="col-md-6">
+    
+
+  </div>
+
+  <div class="col-md-6">
+    
+  </div>
+
+  
+
+<p><br></p>
+  <div class="col-md-3"> </div>
+  <div class="col-4 mx-auto">
+    <button class="btn btn-primary " name="regBtn"  type="submit">send the locker code to your email!</button>
+  </div>
+</form>
+  
+
+</main>
+
 
   </main>
 
