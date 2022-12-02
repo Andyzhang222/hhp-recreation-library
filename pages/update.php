@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if (!isset($_SESSION['admin'])) {
+        header("Location: ../index.php?no-access=1");
+        exit();
+    }
+
     require_once "../includes/db-connection.php";
     require "../includes/header.php";
 ?>

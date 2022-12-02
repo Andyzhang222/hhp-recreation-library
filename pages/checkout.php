@@ -1,217 +1,176 @@
 <?php
+  session_start();
   require "../includes/header.php";
   require_once "../includes/db-connection.php";
 
-if(isset($_POST['regBtn'])){
-
-  
-session_start();
-$Fname = filter_input(INPUT_POST,'FirstName');
-$Lname = filter_input(INPUT_POST,'LastName');
- $name = $Fname.' '.$Lname;
-$email = $_POST['E-mail'];
-$Item_ID = $_POST['Item_ID'];
-$QTY = $_POST['QTY'];
-
-if(empty($Fname)){
-    $Fname_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[0-9].*/", $Fname)){
-    $Fname_error= "Numerical Number can not allowed in first name";
-  }
-  if(preg_match( "/\W/",$Fname)){
-    $Fname_error = "last name can not have special character";
+  if (isset($_GET['empty-input'])) {
+    if ($_GET['empty-input'] == 1) {
+      $message = "<p class='alert alert-warning'>Please fill out all required fields.</p>";
+    }
   }
 
-  
-  if(empty($Lname)){
-    $Lname_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[0-9].*/", $Lname)){
-    $Lname_error= "Numerical Number can not allowed in last name";
-  }
-  if(preg_match( "/\W/",$Lname)){
-    $Lname_error = "last name can not have special character";
+  if (isset($_GET['invalid-name'])) {
+    if ($_GET['invalid-name'] == 1) {
+      $message = "<p class='alert alert-warning'>Please enter a valid name.</p>";
+    }
   }
 
-
-  if(empty($Item_ID)){
-    $ItemID_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[a-z].*/", $QTY)){
-    $ItemID_error= " Item ID can only be the numerical number";
-  }
-  if(preg_match("/.*[A-Z].*/", $QTY)){
-    $ItemID_error= " Item ID can only be the numerical number";
-  }
-  if(preg_match( "/\W/",$QTY)){
-    $ItemID_error = "Item ID can not have special character";
+  if (isset($_GET['invalid-email'])) {
+    if ($_GET['invalid-email'] == 1) {
+      $message = "<p class='alert alert-warning'>Please enter a valid email.</p>";
+    }
   }
 
-
-  if(empty($QTY)){
-    $QTY_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[a-z].*/", $QTY)){
-    $QTY_error= " QTY can only be the numerical number";
-  }
-  if(preg_match("/.*[A-Z].*/", $QTY)){
-    $QTY_error= " QTY can only be the numerical number";
-  }
-  if(preg_match( "/\W/",$QTY)){
-    $QTY_error = "QTY can not have special character";
+  if (isset($_GET['insert-error'])) {
+    if ($_GET['insert-error'] == 1) {
+      $message = "<p class='alert alert-warning'>Failed to place an order.</p>";
+    }
   }
 
+  if (isset($_GET['invalid-date'])) {
+    if ($_GET['invalid-date'] == 1) {
+      $message = "<p class='alert alert-warning'>Minimum duration for a loan is 4 days.</p>";
+    }
 
+    if ($_GET['invalid-date'] == 2) {
+      $message = "<p class='alert alert-warning'>Maximum duration for a loan is 30 days</p>";
+    }
+  }
 
+  if (isset($_POST['place-order'])) {
+    $fullName = htmlspecialchars(stripslashes(trim($_POST['full-name'])));
+    $email = htmlspecialchars(stripslashes(trim($_POST['email'])));
+    $returnDateString = htmlspecialchars(stripslashes(trim($_POST['return-date'])));
 
+    if (empty($fullName) || empty($email) || empty($returnDateString)) {
+      header("Location: checkout.php?empty-input=1");
+      exit();
+    }
 
+    $nameValidator = "/^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,5}$/";
+    $emailValidator = "/^[\w\-\.]+@dal.ca$/";
 
-  if (empty($email)){
-    $email_error = "please enter a valid email";
-}elseif(strlen($email) - strrpos($email, '.') <= 2 || strlen($email) - strrpos($email, '.') > 6){
-    $email_error = "please enter the email with the damoin number between 2 to 5 ";
-}
+    if (preg_match($nameValidator, $fullName) != 1) {
+      header("Location: checkout.php?invalid-name=1");
+      exit();
+    }
 
+    if (preg_match($emailValidator, $email) != 1) {
+      header("Location: checkout.php?invalid-email=1");
+      exit();
+    }
 
+    $returnDate = date("Y-m-d", strtotime($returnDateString));
+    $minDate = date("Y-m-d", strtotime("+4 days", strtotime("now")));
+    $maxDate = date("Y-m-d", strtotime("+30 days", strtotime("now")));
 
-$valid = !isset($Fame_error) && !isset($Lname_error) && !isset($email_error) &&  !isset($ItemID_error) && !isset($QTY_error);
+    if (($minDate <= $returnDate) != 1) {
+      header("Location: checkout.php?invalid-date=1");
+      exit();
+    }
 
-if($valid){
+    if (($maxDate > $returnDate) != 1) {
+      header("Location: checkout.php?invalid-date=2");
+      exit();
+    }
 
-  $_SESSION["name"] = "$name";
+    $itemList = json_encode($_SESSION['cart']);
+    $insertQuery = "INSERT INTO `order` VALUES(NULL, '$itemList', '$fullName', '$email', CURDATE(), '$returnDate', 0);";
 
-  $insertQuery = "INSERT INTO `order`
-VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 0);";
+    $insertResult = $conn->query($insertQuery);
 
-$insertResult = $conn->query($insertQuery);
+    if ($insertQuery) {
+      foreach($_SESSION['cart'] as $itemID => $itemQuant) {
+        $updateQuery = "UPDATE `equipment_type`
+        SET quantity = quantity - $itemQuant
+        WHERE id='$itemID';";
 
-if (!$insertResult) {
-    trigger_error('Error: ' . $conn->error);
-}
-
-if ($insertResult == true) {
-
-    echo "<p>Order placed</p>";
-    header("Location: checkConfirm.php");
-    exit();
-}
-  
-
-}
-}
+        $updateResult = $conn->query($updateQuery);
+      }
+      $_SESSION['cart'] = array();
+      header("Location: confirmation.php");
+      exit();
+    } else {
+      header("Location: checkout.php?insert-error=1");
+      exit();
+    }
+  }
 ?>
-  <main>
-    <header>
-   
-    </header>
 
-  
-  <h7 class="text-center"> <br></h7>
-  <h7 class="text-center"> <br></h7>
- 
-  <h7 class="text-center"> <br></h7>
-  <h2 class="text-center">Checkout Item</h2> 
- 
-  <form class="row" method="post">
-
-  
-  <div class="col-4">
-    <label for="validationServer01" class="form-label">First name</label>
-    <input type="text" class="form-control <?php if(isset($Fname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Fname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="FirstName">
-
-    <div class="invalid-feedback">
-    <?php if(isset($Fname_error))echo $Fname_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <label for="validationServer01" class="form-label">Last name</label>
-    <input type="text" class="form-control <?php if(isset($Lname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Lname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="LastName">
-
-    <div class="invalid-feedback">
-    <?php if(isset($Lname_error))echo $Lname_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <label for="validationServer01" class="form-label">Item ID</label>
-    <input type="text" class="form-control  <?php if(isset($ItemID_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn'])
-     && !isset($ItemID_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="Item_ID" >
-
-
-    <div class="invalid-feedback">
-    <?php if(isset($ItemID_error))echo $ItemID_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  <p><br></p>
-  
-  <p><br></p>
-
-  <div class="col-md-6">
-    <label for="validationServer01" class="form-label">QTY</label>
-    <input type="text" class="form-control <?php if(isset($QTY_error)){echo 'is-invalid';} 
-    elseif(isset($_POST['regBtn']) && !isset($QTY_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="QTY">
-
-    <div class="invalid-feedback">
-    <?php if(isset($QTY_error))echo $QTY_error;  ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
+  <main class="search-res">
+    <div class="py-2 text-center">
+      <h2>Checkout</h2>
+      <p class="lead">Please fill out the following fields:</p>
     </div>
 
-  </div>
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-secondary">Your cart</span>
+          <span class="badge bg-secondary rounded-pill"><?php
+            if (isset($_SESSION['cart'])) {
+                echo sizeof($_SESSION['cart']);
+            } else {
+                echo 0;
+            }
+        ?></span>
+        </h4>
+        <ul class="list-group mb-3">
+          <?php
+            foreach($_SESSION['cart'] as $itemID => $itemQuant) {
+              $itemQuery = "SELECT * 
+              FROM `equipment_type`
+              WHERE id='$itemID';";
+    
+              $itemResult = $conn->query($itemQuery);
+              $itemInfo = $itemResult->fetch_assoc();
+    
+              $description = $itemInfo['description'];
+          ?>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0"><?php echo $description; ?></h6>
+              <small class="text-muted"><?php echo "Quantity: $itemQuant"; ?></small>
+            </div>
+          </li>
+          <?php
+            }
+          ?>
+        </ul>
+      <a href="shopping-cart.php" class="w-40 btn btn-warning">Go back to cart</a>
 
-  <div class="col-md-6">
-    <label for="validationServer01" class="form-label">E-mail</label>
-    <input type="text" class="form-control <?php if(isset($email_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($email_error)) {echo 'is-valid';} ?> " 
-    id="validationServer01" name="E-mail">
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Your information</h4>
+        <form method="post" action="checkout.php" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="fullName" class="form-label">Full name <span class="text-muted">(Required)</span></label>
+              <input type="text" class="form-control" id="fullName" placeholder="Apple Smith" name="full-name" required>
+            </div>
 
-    <div class="invalid-feedback">
-    <?php if(isset($email_error))echo $email_error;  ?>
+            <div class="col-12">
+              <label for="email" class="form-label">Email <span class="text-muted">(Required - has to be a Dal email with @dal.ca)</span></label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@dal.ca" required>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Estimated return date <span class="text-muted">(Required - at least 4 days after today.)</span></label>
+              <input type="date" class="form-control" id="return-date" name="return-date" min="<?php echo date("Y-m-d"); ?>" required>
+            </div>
+
+            <?php echo $message; ?>
+          </div>
+
+          <hr class="my-4">
+
+          <button class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="place-order">Place order</button>
+        </form>
+      </div>
     </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
+  </main>
 
-  
 
-<p><br></p>
-  <div class="col-md-3"> </div>
-  <div class="col-4 mx-auto">
-    <button class="btn btn-primary " name="regBtn"  type="submit">Submit</button>
-  </div>
-</form>
-  
-
-</main>
-
-  <footer>
-    <!-- place footer here -->
-    <?php
-  require "../includes/footer.php"
+<?php
+  require "../includes/footer.php";
 ?>
-  </footer>
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>

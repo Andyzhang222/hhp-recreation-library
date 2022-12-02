@@ -1,5 +1,11 @@
 <?php
   session_start();
+
+  if (isset($_SESSION['admin'])) {
+    header("Location: admin-page.php");
+    exit();
+  }
+
   require "../includes/header.php";
 ?>
 

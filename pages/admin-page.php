@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if (!isset($_SESSION['admin'])) {
+        header("Location: ../index.php?no-access=1");
+        exit();
+    }
+
     require_once "../includes/db-connection.php";
     require "../includes/header.php";
 ?>
@@ -16,8 +22,8 @@
                 <h4 class="my-0 fw-normal">Manage inventory</h4>
             </div>
             <div class="card-body">
-                <button type="button" id="add-item" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Add new item</button>
-                <button type="button" id ="update-quantity" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Update item quantity</button>
+                <a href="add-item.php" id="add-item" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Add new item</a>
+                <a href="update.php" id ="update-quantity" class="btn-spacing w-100 btn btn-lg btn btn-outline-dark">Update item quantity</a>
                 <a href="remove-item.php" id="remove-item" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Remove item</a>
             </div>
             </div>
@@ -26,11 +32,12 @@
         <div class="col">
             <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-                <h4 class="my-0 fw-normal">Manage loans</h4>
+                <h4 class="my-0 fw-normal">Manage orders</h4>
             </div>
             <div class="card-body">
-                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View expired loans</button>
-                <button type="button" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View current loans</button>
+                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View expired loans</a>
+                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View current loans</a>
+                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View returns</a>
             </div>
             </div>
         </div>
@@ -41,8 +48,8 @@
                 <h4 class="my-0 fw-normal">Manage admin access</h4>
             </div>
             <div class="card-body">
-                <button type="button" id="access-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</button>
-                <button type="button" id="add-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</button>
+                <a href="access-codes.php" id="access-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</a>
+                <a href="add-code.php" id="add-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</a>
             </div>
             </div>
         </div>
@@ -50,33 +57,5 @@
 </div>
 
 <?php
-
-
   require "../includes/footer.php";
 ?>
-
-<script type="text/javascript">
-    document.getElementById("add-item").onclick = function () {
-        location.href = "add-item.php";
-    };
-</script>
-<script type="text/javascript">
-    document.getElementById("remove-item").onclick = function () {
-        location.href = "remove-item.php";
-    };
-</script>
-<script type="text/javascript">
-    document.getElementById("access-code").onclick = function () {
-        location.href = "access-codes.php";
-    };
-</script>
-<script type="text/javascript">
-    document.getElementById("add-code").onclick = function () {
-        location.href = "add-code.php";
-    };
-</script>
-
-<script type="text/javascript">
-    document.getElementById("update-quantity").onclick = function () {
-        location.href = "update.php";   };
-</script>
