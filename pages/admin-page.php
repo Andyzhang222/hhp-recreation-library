@@ -35,8 +35,8 @@
                 <h4 class="my-0 fw-normal">Manage orders</h4>
             </div>
             <div class="card-body">
-                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View expired loans</a>
-                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View current loans</a>
+                <a href="expired-requests.php" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View expired requests</a>
+                <a href="requests.php" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View requests</a>
                 <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View returns</a>
             </div>
             </div>
