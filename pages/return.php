@@ -82,7 +82,8 @@ if($valid){
 
   $_SESSION["name"] = "$name";
 
-  $insertQuery = "INSERT INTO `order`VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 0);";
+  $insertQuery = "INSERT INTO `order`
+VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 1);";
 
 $insertResult = $conn->query($insertQuery);
 
@@ -93,8 +94,7 @@ if (!$insertResult) {
 if ($insertResult == true) {
 
     echo "<p>Order placed</p>";
-    header("Location: checkConfirm.php");
-    
+    header("Location: returnConfirm.php");
     exit();
 }
   
@@ -112,7 +112,7 @@ if ($insertResult == true) {
   <h7 class="text-center"> <br></h7>
  
   <h7 class="text-center"> <br></h7>
-  <h2 class="text-center">Checkout Item</h2> 
+  <h2 class="text-center">Return Item</h2> 
  
   <form class="row" method="post">
 
@@ -120,7 +120,7 @@ if ($insertResult == true) {
   <div class="col-4">
     <label for="validationServer01" class="form-label">First name</label>
     <input type="text" class="form-control <?php if(isset($Fname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Fname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="FirstName"  value="<?php echo $_POST['FirstName']; ?>">
+    id="validationServer01" name="FirstName">
 
     <div class="invalid-feedback">
     <?php if(isset($Fname_error))echo $Fname_error; ?>
@@ -133,7 +133,7 @@ if ($insertResult == true) {
   <div class="col-md-4">
     <label for="validationServer01" class="form-label">Last name</label>
     <input type="text" class="form-control <?php if(isset($Lname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Lname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="LastName"  value="<?php echo $_POST['LastName']; ?>">
+    id="validationServer01" name="LastName">
 
     <div class="invalid-feedback">
     <?php if(isset($Lname_error))echo $Lname_error; ?>
@@ -147,7 +147,7 @@ if ($insertResult == true) {
     <label for="validationServer01" class="form-label">Item ID</label>
     <input type="text" class="form-control  <?php if(isset($ItemID_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn'])
      && !isset($ItemID_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="Item_ID"  value="<?php echo $_POST['Item_ID']; ?>">
+    id="validationServer01" name="Item_ID">
 
 
     <div class="invalid-feedback">
@@ -166,7 +166,7 @@ if ($insertResult == true) {
     <label for="validationServer01" class="form-label">QTY</label>
     <input type="text" class="form-control <?php if(isset($QTY_error)){echo 'is-invalid';} 
     elseif(isset($_POST['regBtn']) && !isset($QTY_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="QTY"  value="<?php echo $_POST['QTY']; ?>">
+    id="validationServer01" name="QTY">
 
     <div class="invalid-feedback">
     <?php if(isset($QTY_error))echo $QTY_error;  ?>
@@ -180,7 +180,7 @@ if ($insertResult == true) {
   <div class="col-md-6">
     <label for="validationServer01" class="form-label">E-mail</label>
     <input type="text" class="form-control <?php if(isset($email_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($email_error)) {echo 'is-valid';} ?> " 
-    id="validationServer01" name="E-mail"  value="<?php echo $_POST['E-mail']; ?>">
+    id="validationServer01" name="E-mail">
 
     <div class="invalid-feedback">
     <?php if(isset($email_error))echo $email_error;  ?>
@@ -216,4 +216,3 @@ if ($insertResult == true) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-
