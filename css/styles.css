@@ -72,6 +72,10 @@ footer {
     position: relative;
 }
 
+.search-res {
+    min-height: 73vh;
+}
+
 .shopping-items {
     min-height: 73vh;
     width: 60%;
