@@ -80,6 +80,12 @@ footer {
     min-height: 65vh;
 }
 
+.request-info {
+    min-height: 73vh;
+    width: 70%;
+    margin: auto;
+}
+
 .shopping-items {
     min-height: 73vh;
     width: 60%;

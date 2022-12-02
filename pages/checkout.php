@@ -28,19 +28,22 @@
   }
 
   if (isset($_GET['invalid-date'])) {
-    if ($_GET['invalid-date'] == 1) {
-      $message = "<p class='alert alert-warning'>Minimum duration for a loan is 4 days.</p>";
+    if ($_GET['invalid-date'] == 2) {
+      $message = "<p class='alert alert-warning'>Maximum duration for a loan is 30 days.</p>";
     }
 
-    if ($_GET['invalid-date'] == 2) {
-      $message = "<p class='alert alert-warning'>Maximum duration for a loan is 30 days</p>";
+    if ($_GET['invalid-date'] == 1) {
+      $message = "<p class='alert alert-warning'>We need at lease 2 days in advance to process your request.</p>";
     }
   }
 
   if (isset($_POST['place-order'])) {
     $fullName = htmlspecialchars(stripslashes(trim($_POST['full-name'])));
     $email = htmlspecialchars(stripslashes(trim($_POST['email'])));
-    $returnDateString = htmlspecialchars(stripslashes(trim($_POST['return-date'])));
+    $program = htmlspecialchars(stripslashes(trim($_POST['program'])));
+    $dateNeededString = $_POST['date-needed'];
+    $purpose = $_POST['purpose'];
+    $returnDateString = $_POST['return-date'];
 
     if (empty($fullName) || empty($email) || empty($returnDateString)) {
       header("Location: checkout.php?empty-input=1");
@@ -60,22 +63,28 @@
       exit();
     }
 
-    $returnDate = date("Y-m-d", strtotime($returnDateString));
-    $minDate = date("Y-m-d", strtotime("+4 days", strtotime("now")));
-    $maxDate = date("Y-m-d", strtotime("+30 days", strtotime("now")));
+    $dateNeeded = date("Y-m-d", strtotime($dateNeededString));
+    $minDate = date("Y-m-d", strtotime("+2 days", strtotime("now")));
 
-    if (($minDate <= $returnDate) != 1) {
+    if (($minDate <= $dateNeeded) != 1) {
       header("Location: checkout.php?invalid-date=1");
       exit();
     }
+
+    $returnDate = date("Y-m-d", strtotime($returnDateString));
+    $maxDate = date("Y-m-d", strtotime("+30 days", strtotime("now")));
 
     if (($maxDate > $returnDate) != 1) {
       header("Location: checkout.php?invalid-date=2");
       exit();
     }
 
+    if (strcmp($purpose, "other") == 0) {
+      $purpose = htmlspecialchars(stripslashes(trim($_POST['other'])));;
+    }
+
     $itemList = json_encode($_SESSION['cart']);
-    $insertQuery = "INSERT INTO `order` VALUES(NULL, '$itemList', '$fullName', '$email', CURDATE(), '$returnDate', 0);";
+    $insertQuery = "INSERT INTO `order` VALUES(NULL, '$itemList', '$fullName', '$email', '$program', '$dateNeeded', '$purpose', '$returnDate', 0, 0);";
 
     $insertResult = $conn->query($insertQuery);
 
@@ -155,7 +164,58 @@
             </div>
 
             <div class="col-12">
-              <label for="address" class="form-label">Estimated return date <span class="text-muted">(Required - at least 4 days after today.)</span></label>
+              <label for="program" class="form-label">Program of Study <span class="text-muted">(Required)</span></label>
+              <input type="text" class="form-control" name="program" id="program" placeholder="e.g. Bachelor of Applied Computer Science" required>
+            </div>
+
+            <div class="col-12">
+              <label for="date-needed" class="form-label">Date needed <span class="text-muted">(Required - at least 2 days in advance.)</span></label>
+              <input type="date" class="form-control" id="date-needed" name="date-needed" min="<?php echo date("Y-m-d"); ?>" required>
+            </div>
+
+            <div class="col-12">
+              <label for="purpose" class="form-label">For what purpose are you borrowing this item/these items?  <span class="text-muted">(Required)</span></label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="In-classroom use">
+                <label class="form-check-label" for="purpose">
+                  In-classroom use
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="For use outside the classroom (i.e., in community), to fulfill a course requirement">
+                <label class="form-check-label" for="purpose">
+                  For use outside the classroom (i.e., in community), to fulfill a course requirement 
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="For use with an extracurricular group on campus (i.e., SAHHPer)">
+                <label class="form-check-label" for="purpose">
+                  For use with an extracurricular group on campus (i.e., SAHHPer)  
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="For use in a volunteer or work placement">
+                <label class="form-check-label" for="purpose">
+                  For use in a volunteer or work placement   
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="For personal use">
+                <label class="form-check-label" for="purpose">
+                  For personal use    
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="purpose" value="other">
+                <label class="form-check-label" for="purpose">
+                  Other reason:    
+                </label>
+                <input type="text" class="form-control" name="other" id="other">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="return-date" class="form-label">Estimated return date <span class="text-muted">(Required)</span></label>
               <input type="date" class="form-control" id="return-date" name="return-date" min="<?php echo date("Y-m-d"); ?>" required>
             </div>
 
@@ -164,7 +224,7 @@
 
           <hr class="my-4">
 
-          <button class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="place-order">Place order</button>
+          <button class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="place-order">Place a request</button>
         </form>
       </div>
     </div>
