@@ -76,6 +76,10 @@ footer {
     min-height: 73vh;
 }
 
+.confirmation {
+    min-height: 65vh;
+}
+
 .shopping-items {
     min-height: 73vh;
     width: 60%;

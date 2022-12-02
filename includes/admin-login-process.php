@@ -20,6 +20,7 @@
         header("Location: ../pages/admin-login.php?access-denied=1");
         exit();
     } else {
+        $_SESSION['admin'] = "admin";
         header("Location: ../pages/admin-page.php");
         exit();
     }
