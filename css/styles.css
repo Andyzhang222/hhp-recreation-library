@@ -72,6 +72,20 @@ footer {
     position: relative;
 }
 
+.search-res {
+    min-height: 73vh;
+}
+
+.confirmation {
+    min-height: 65vh;
+}
+
+.request-info {
+    min-height: 73vh;
+    width: 70%;
+    margin: auto;
+}
+
 .shopping-items {
     min-height: 73vh;
     width: 60%;
@@ -185,6 +199,10 @@ footer {
     height: 15px;   
     
 }
+
+
+
+
 
 .submit1{
     width: 270px;
