@@ -18,7 +18,7 @@
   if (isset($_POST['update'])) {
     $id = $_POST['remove-id'];
     $maxQuantity = $_POST['max-quant'];
-    $newQuant = stripslashes(htmlspecialchars($_POST['update-quant']));
+    $newQuant = $_POST['update-quant'];
     if ($newQuant > $maxQuantity) {
       $message = '
       <p class="alert alert-danger text-center">Quantity surpassed quantity available.</p>
@@ -57,16 +57,29 @@
 
     <div class="list-group-item list-group-item-action d-flex justify-content-between mb-3" aria-current="true">
       <form class="d-flex gap-2 w-100 justify-content-between align-items-center" method="POST" action="shopping-cart.php">
-        <img class="item-in-cart" src="<?php echo $imageSrc; ?>" alt="<?php echo $description; ?>" class="rounded-circle flex-shrink-0">
-        <div>
-          <h6 class="mb-0"><?php echo $description; ?></h6>
-          <label for="update-quant">Quantity:</label>
-          <textarea id="update-quant" name="update-quant"><?php echo $itemQuant; ?></textarea>
+        <div class="d-flex justify-content-start">
+          <img class="item-in-cart" src="<?php echo $imageSrc; ?>" alt="<?php echo $description; ?>" class="rounded-circle flex-shrink-0">
+          <div>
+            <h6 class="mb-0"><?php echo $description; ?></h6>
+            <select name="update-quant">
+              <?php
+                for ($i=1; $i<=$maxQuant; $i++) {
+                  if ($i == $itemQuant) {
+                    echo "<option value='$i' selected>$i</option>";
+                  } else {
+                    echo "<option value='$i'>$i</option>";
+                  }
+                }
+              ?>
+            </select>
+          </div>
         </div>
-        <input id='update' class='btn btn-secondary' type='submit' value='Update quantity' name='update'>
-        <input id='remove-item' class='btn btn-secondary' type='submit' value='Remove' name='remove'>
-        <input type='hidden' name='remove-id' value='<?php echo $itemID; ?>' >
-        <input type='hidden' name='max-quant' value='<?php echo $maxQuant; ?>' >
+        <div>
+          <input id='update' class='btn btn-secondary' type='submit' value='Update quantity' name='update'>
+          <input id='remove-item' class='btn btn-secondary' type='submit' value='Remove' name='remove'>
+          <input type='hidden' name='remove-id' value='<?php echo $itemID; ?>' >
+          <input type='hidden' name='max-quant' value='<?php echo $maxQuant; ?>' >
+        </div>
       </form>
     </div>
 
