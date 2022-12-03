@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
-</head>
-<body>
+<?php
+  session_start();
 
-<h1>HHP Recreation Library</h1>
-<p>Anything really.</p>
+  require 'includes/header.php';
+  require 'includes/db-connection.php';
 
-</body>
-</html> 
+  if (isset($_GET['search-empty'])) {
+    if ($_GET['search-empty'] == 1) {
+      echo "<p class='alert alert-warning' id='cart-empty'>Please enter some letters.</p>";
+    }
+  }
+
+  if (isset($_GET['no-access'])) {
+    if ($_GET['no-access'] == 1) {
+      echo "<p class='alert alert-danger' id='cart-empty'>Access denied.</p>";
+    }
+  }
+?>
+
+<?php
+  require 'pages/inventory.php';
+  require 'includes/footer.php'; 
+?>
