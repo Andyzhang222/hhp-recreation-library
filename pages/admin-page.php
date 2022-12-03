@@ -37,7 +37,7 @@
             <div class="card-body">
                 <a href="expired-requests.php" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View expired requests</a>
                 <a href="requests.php" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View requests</a>
-                <a href="" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View returns</a>
+                <a href="admin-returns.php" class="btn-spacing w-100 btn btn-lg btn-outline-dark">View returns</a>
             </div>
             </div>
         </div>

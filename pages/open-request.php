@@ -103,7 +103,7 @@
         </tbody>
     </table>
 
-    <div class="d-grid mt-3 gap-2 d-sm-flex justify-content-sm-center mb-5">
+    <div class="d-grid mt-3 mb-3 gap-2 d-sm-flex justify-content-sm-center mb-5">
         <form method="post" action="open-request.php">
             <input type="submit" name="approve-request"class="btn btn-warning btn-lg px-4 me-sm-3" value="Approve request"/>
             <input type="submit" name="cancel-request" class="btn btn-outline-secondary btn-lg px-4" value="Cancel request"/>

@@ -1,7 +1,7 @@
 <?php
     $servername = "localhost:8889";
     $username = "root";
-    $password = "root";
+    $password = "/)18F)@VW!BVbdJF";
     $db = "hhp_recreation_library";
 
     // Create connection
