@@ -120,6 +120,7 @@ footer {
     object-fit: cover;
     width: 80px;
     height: 80px;
+    margin-right: 9px;
 }
 
 #cart-num {
