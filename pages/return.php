@@ -19,10 +19,10 @@
     $order_id = $_POST['order-num'];
     $notes = htmlspecialchars(stripslashes(trim($_POST['notes'])));
 
-    $findOrderQuery = "SELECT * FROM `returns` WHERE order_number = '$order_id';";
+    $findOrderQuery = "SELECT * FROM `returns` WHERE order_number = '$order_id' AND order_returned=0;";
     $findOrderResult = $conn->query($findOrderQuery);
     if ($findOrderResult->num_rows == 0) {
-      $returnQuery = "INSERT INTO `returns` VALUES(NULL, '$order_id', '$notes', CURDATE());";
+      $returnQuery = "INSERT INTO `returns` VALUES(NULL, '$order_id', '$notes', CURDATE(), 0);";
       $returnResult = $conn->query($returnQuery);
 
       if ($returnResult) {

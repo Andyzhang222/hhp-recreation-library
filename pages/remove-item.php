@@ -16,7 +16,7 @@
 		$removeResult = $conn->query($removeQuery);
 
 		if (!$removeResult) {
-			$message = "<p class='alert alert-success text-center'>Failed to remove item.</p>";
+			$message = "<p class='alert alert-danger text-center'>Failed to remove item.</p>";
 		} else {
 			$message = "<p class='alert alert-success text-center'>Item removed.</p>";
 		}
