@@ -27,8 +27,8 @@ footer {
 
 .item-image-main {
     object-fit: cover;
-    width: 296.667px;
-    height: 296.667px;
+    width: 100%;
+    height: 250px;
     border-radius: 5px;
 }
 
