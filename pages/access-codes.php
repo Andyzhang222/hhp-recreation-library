@@ -8,41 +8,51 @@
 
     require_once "../includes/db-connection.php";
     require "../includes/header.php";
-  ?>
-    
 
-<main>
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal">Current Access codes</h1>  
-        <div class = "card shadow-sm">
-            <h3 class = "fw-light">
-        <?php
-            $sql = "SELECT * FROM admin_code;";
-            $result = mysqli_query($conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
-            
-            if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
-                    echo " Code Status - ";
-                    echo $row['code_status'] . "  |  " ;
-                    echo $row['code'] . "  | Expiry Date - ";
-                    echo $row['expire_date'] . " <br>";
+    $message = "";
 
-                }
+    if (isset($_POST['remove-code'])) {
+        $code = $_POST['hidden-code'];
 
-            }
-            
-        ?>
-            </h3>
-        </div>         
+        $removeQuery = "DELETE FROM `admin_code` WHERE code='$code';";
+		$removeResult = $conn->query($removeQuery);
+
+		if (!$removeResult) {
+			$message = "<p class='alert alert-danger text-center'>Failed to delete code.</p>";
+		} else {
+			$message = "<p class='alert alert-success text-center'>Code removed successfully.</p>";
+		}
+    }
+
+    $codeQuery = "SELECT * FROM `admin_code`;";
+    $codeResult = $conn->query($codeQuery);
+?>
+
+
+<div class="list-group request-info">
+    <h3 class="text-center mb-3">Current admin access codes:</h3>
+    <?php echo $message; ?>
+    <?php
+        if ($codeResult->num_rows == 0) {
+            echo "<p class='alert alert-warning' id='cart-empty'>There are no access codes.</p>";
+        } else {
+            while ($row = $codeResult->fetch_assoc()) {
+    ?>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <h6 class="mb-0"><?php echo $row['code']; ?></h6>
+                <p class="mb-0 opacity-75"><?php echo $row['expiry_date']; ?></p>
+            </div>
+            <form method="post" action="access-codes.php">
+                <input type="hidden" name="hidden-code" value="<?php echo $row['code']; ?>">
+                <input class="link-primary remove-button" onclick="return confirm('Are you sure you want to remove this access code?')" type="submit" name="remove-code" value="Remove code" />
+            </form>
+        </div>
     </div>
-</main>
-
-
-
-
+    <?php } } ?>
+</div>
 
 <?php
-  
     require "../includes/footer.php";
 ?>

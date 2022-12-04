@@ -14,7 +14,7 @@
     <h1 class="h3 mb-3 fw-normal">Please enter admin code:</h1>
 
     <div class="form-floating" id="admin-input">
-      <input type="text" class="form-control" id="floatingInput" name="code-submitted">
+      <input type="text" class="form-control" id="floatingInput" name="code-submitted" required>
       <label for="floatingInput">Code</label>
     </div>
 
