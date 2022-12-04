@@ -3,6 +3,10 @@
   require "../includes/header.php";
   require_once "../includes/db-connection.php";
 
+  if (sizeof($_SESSION['cart']) == 0) {
+    header("Location: ../index.php");
+  }
+
   if (isset($_GET['empty-input'])) {
     if ($_GET['empty-input'] == 1) {
       $message = "<p class='alert alert-warning'>Please fill out all required fields.</p>";

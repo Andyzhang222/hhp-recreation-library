@@ -3,216 +3,85 @@
   require "../includes/header.php";
   require_once "../includes/db-connection.php";
 
-if(isset($_POST['regBtn'])){
+  $message = "";
 
-  
-session_start();
-$Fname = filter_input(INPUT_POST,'FirstName');
-$Lname = filter_input(INPUT_POST,'LastName');
- $name = $Fname.' '.$Lname;
-$email = $_POST['E-mail'];
-$Item_ID = $_POST['Item_ID'];
-$QTY = $_POST['QTY'];
+  if (isset($_GET['success'])) {
+    if ($_GET['success'] == 1) {
+      $message = "<p class='alert alert-success text-center'>Return submitted successfully.</p>";
+    }
 
-if(empty($Fname)){
-    $Fname_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[0-9].*/", $Fname)){
-    $Fname_error= "Numerical Number can not allowed in first name";
-  }
-  if(preg_match( "/\W/",$Fname)){
-    $Fname_error = "last name can not have special character";
+    if ($_GET['success'] == 0) {
+      $message = "<p class='alert alert-danger text-center'>Failed to submit a return. Please try again.</p>";
+    }
   }
 
-  
-  if(empty($Lname)){
-    $Lname_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[0-9].*/", $Lname)){
-    $Lname_error= "Numerical Number can not allowed in last name";
-  }
-  if(preg_match( "/\W/",$Lname)){
-    $Lname_error = "last name can not have special character";
-  }
+  if(isset($_POST['submit-return'])) {
+    $order_id = $_POST['order-num'];
+    $notes = htmlspecialchars(stripslashes(trim($_POST['notes'])));
 
+    $findOrderQuery = "SELECT * FROM `returns` WHERE order_number = '$order_id' AND order_returned=0;";
+    $findOrderResult = $conn->query($findOrderQuery);
+    if ($findOrderResult->num_rows == 0) {
+      $returnQuery = "INSERT INTO `returns` VALUES(NULL, '$order_id', '$notes', CURDATE(), 0);";
+      $returnResult = $conn->query($returnQuery);
 
-  if(empty($Item_ID)){
-    $ItemID_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[a-z].*/", $QTY)){
-    $ItemID_error= " Item ID can only be the numerical number";
-  }
-  if(preg_match("/.*[A-Z].*/", $QTY)){
-    $ItemID_error= " Item ID can only be the numerical number";
-  }
-  if(preg_match( "/\W/",$QTY)){
-    $ItemID_error = "Item ID can not have special character";
+      if ($returnResult) {
+        header("Location: return.php?success=1");
+        exit();
+      } else {
+        header("Location: return.php?success=0");
+        exit();
+      }
+    } else {
+      $message = "<p class='alert alert-warning text-center'>The return process for this order has already started.</p>";
+    }
   }
 
-
-  if(empty($QTY)){
-    $QTY_error= "Please fill out this field.";
-  }
-  if(preg_match("/.*[a-z].*/", $QTY)){
-    $QTY_error= " QTY can only be the numerical number";
-  }
-  if(preg_match("/.*[A-Z].*/", $QTY)){
-    $QTY_error= " QTY can only be the numerical number";
-  }
-  if(preg_match( "/\W/",$QTY)){
-    $QTY_error = "QTY can not have special character";
-  }
-
-
-
-
-
-
-  if (empty($email)){
-    $email_error = "please enter a valid email";
-}elseif(strlen($email) - strrpos($email, '.') <= 2 || strlen($email) - strrpos($email, '.') > 6){
-    $email_error = "please enter the email with the damoin number between 2 to 5 ";
-}
-
-
-
-$valid = !isset($Fame_error) && !isset($Lname_error) && !isset($email_error) &&  !isset($ItemID_error) && !isset($QTY_error);
-
-if($valid){
-
-  $_SESSION["name"] = "$name";
-
-  $insertQuery = "INSERT INTO `order`
-VALUES (NULL, 1, '$QTY', '$name', '$email', CURDATE(), CURDATE(), 1);";
-
-$insertResult = $conn->query($insertQuery);
-
-if (!$insertResult) {
-    trigger_error('Error: ' . $conn->error);
-}
-
-if ($insertResult == true) {
-
-    echo "<p>Order placed</p>";
-    header("Location: returnConfirm.php");
-    exit();
-}
-  
-
-}
-}
+  $orderQuery = "SELECT order_number FROM `order`;";
+  $orderResult = $conn->query($orderQuery);
 ?>
-  <main>
-    <header>
-   
-    </header>
-
-  
-  <h7 class="text-center"> <br></h7>
-  <h7 class="text-center"> <br></h7>
- 
-  <h7 class="text-center"> <br></h7>
-  <h2 class="text-center">Return Item</h2> 
- 
-  <form class="row" method="post">
-
-  
-  <div class="col-4">
-    <label for="validationServer01" class="form-label">First name</label>
-    <input type="text" class="form-control <?php if(isset($Fname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Fname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="FirstName">
-
-    <div class="invalid-feedback">
-    <?php if(isset($Fname_error))echo $Fname_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
+<main class="request-info">
+  <div class="py-2 text-center">
+    <?php echo $message; ?>
+    <h2>Return form</h2>
+    <p class="lead">Please fill out the information below:</p>
   </div>
+    <form class="needs-validation" method="post" action="return.php">
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="order-num" class="form-label">Your request number:</label>
+          <?php
+            if ($orderResult->num_rows == 0) {
+          ?>
+          <select name="order-num" class="form-select" aria-label="Your request number" disabled>
+            <option>No orders to return.</option>
+          </select>
+          <?php
+            } else {
+          ?>
+          <select name="order-num" class="form-select" aria-label="Your request number">
+            <?php
+              while ($row = $orderResult->fetch_assoc()) {
+                $order_num = $row['order_number'];
+            ?>
+            <option><?php echo $order_num; ?></option>
+            <?php } ?>
+          </select>
+          <?php
+            }
+          ?>
+        </div>
 
-  <div class="col-md-4">
-    <label for="validationServer01" class="form-label">Last name</label>
-    <input type="text" class="form-control <?php if(isset($Lname_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($Lname_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="LastName">
+        <div class="col-12">
+          <label for="notes" class="form-label">Notes (if any)</label>
+          <input type="text" class="form-control" id="notes" name="notes" placeholder="Any damaged or missing item?">
+        </div>
+      </div>
 
-    <div class="invalid-feedback">
-    <?php if(isset($Lname_error))echo $Lname_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <label for="validationServer01" class="form-label">Item ID</label>
-    <input type="text" class="form-control  <?php if(isset($ItemID_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn'])
-     && !isset($ItemID_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="Item_ID">
-
-
-    <div class="invalid-feedback">
-    <?php if(isset($ItemID_error))echo $ItemID_error; ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  <p><br></p>
-  
-  <p><br></p>
-
-  <div class="col-md-6">
-    <label for="validationServer01" class="form-label">QTY</label>
-    <input type="text" class="form-control <?php if(isset($QTY_error)){echo 'is-invalid';} 
-    elseif(isset($_POST['regBtn']) && !isset($QTY_error)) {echo 'is-valid';} ?>" 
-    id="validationServer01" name="QTY">
-
-    <div class="invalid-feedback">
-    <?php if(isset($QTY_error))echo $QTY_error;  ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-
-  </div>
-
-  <div class="col-md-6">
-    <label for="validationServer01" class="form-label">E-mail</label>
-    <input type="text" class="form-control <?php if(isset($email_error)){echo 'is-invalid';} elseif(isset($_POST['regBtn']) && !isset($email_error)) {echo 'is-valid';} ?> " 
-    id="validationServer01" name="E-mail">
-
-    <div class="invalid-feedback">
-    <?php if(isset($email_error))echo $email_error;  ?>
-    </div>
-    <div class="valid-feedback">
-    Looks good!
-    </div>
-  </div>
-
-  
-
-<p><br></p>
-  <div class="col-md-3"> </div>
-  <div class="col-4 mx-auto">
-    <button class="btn btn-primary " name="regBtn"  type="submit">Submit</button>
-  </div>
-</form>
-  
-
+      <button class="w-100 btn btn-warning btn-lg mt-4" type="submit" name="submit-return">Submit your return</button>
+    </form>
 </main>
 
-  <footer>
-    <!-- place footer here -->
-    <?php
-  require "../includes/footer.php"
+<?php
+  require "../includes/footer.php";
 ?>
-  </footer>
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
