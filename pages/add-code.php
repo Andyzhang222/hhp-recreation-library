@@ -9,25 +9,45 @@
   require '../includes/header.php';
   require '../includes/db-connection.php';
 
+  $message = "";
+
+  if (isset($_POST['submit-code'])) {
+    $newCode = htmlspecialchars(stripslashes(trim($_POST['new-code'])));
+    $expiryDate = date("Y-m-d", strtotime($_POST['expiry-date']));
+
+    $insertQuery = "INSERT INTO `admin_code` VALUES('$newCode', CURDATE(), '$expiryDate');";
+    $insertResult = $conn->query($insertQuery);
+
+    if ($insertResult) {
+      $message = "<p class='alert alert-success text-center'>Code added to the database.</p>";
+    } else {
+      $message = "<p class='alert alert-danger text-center'>Failed to add code.</p>";
+    }
+  }
 ?>
 
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-5 fw-normal">Add New Code</h1>
+<main class="request-info">
+  <div class="py-2 text-center">
+    <?php echo $message; ?>
+    <h2>Add new admin code</h2>
+  </div>
+    <form class="needs-validation" method="post" action="add-code.php">
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="new-code" class="form-label">Enter new code here:</label>
+          <input type="text" class="form-control" id="new-code" name="new-code" required>
+        </div>
 
-        <div class = "vh-100 d-flex justify-content-center align-content-center">
-    
+        <div class="col-12">
+          <label for="expiry-date" class="form-label">Expiry date</label>
+          <input type="date" class="form-control" id="expiry-date" name="expiry-date" min="<?php echo date("Y-m-d"); ?>" required>
+        </div>
+      </div>
 
-    <form class="align-items-center" action="" method="post">
+      <button class="w-100 btn btn-warning btn-lg mt-4" type="submit" name="submit-code">Add code</button>
+    </form>
+</main>
 
-  <div class="mb-3">
-    <label class="form-label">Current Passcode</label>
-    <input type="text" class="form-control" id="inputName" name="FirstName" method="post">
-    <label for="exampleInputPassword1" class="form-label">Additional Passcode</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
-</div>
-
-  <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
-</form>
-    </div>
-       
-    </div>
+<?php
+  require "../includes/footer.php";
+?>

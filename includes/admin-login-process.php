@@ -13,7 +13,7 @@
     $codeQuery = "SELECT * 
     FROM `admin_code`
     WHERE code=$codeSubmitted
-    AND code_status LIKE 'ACTIVE';";
+    AND expire_date > CURDATE();";
 
     $codeResult = $conn->query($codeQuery);
     if ($codeResult->num_rows === 0) {
