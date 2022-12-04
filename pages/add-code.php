@@ -31,21 +31,21 @@
     <?php echo $message; ?>
     <h2>Add new admin code</h2>
   </div>
-    <form class="needs-validation" method="post" action="add-code.php">
-      <div class="row g-3">
-        <div class="col-12">
-          <label for="new-code" class="form-label">Enter new code here:</label>
-          <input type="text" class="form-control" id="new-code" name="new-code" required>
-        </div>
-
-        <div class="col-12">
-          <label for="expiry-date" class="form-label">Expiry date</label>
-          <input type="date" class="form-control" id="expiry-date" name="expiry-date" min="<?php echo date("Y-m-d"); ?>" required>
-        </div>
+  <form class="needs-validation" method="post" action="add-code.php">
+    <div class="row g-3">
+      <div class="col-12">
+        <label for="new-code" class="form-label">Enter new code here:</label>
+        <input type="text" class="form-control" id="new-code" name="new-code" required>
       </div>
 
-      <button class="w-100 btn btn-warning btn-lg mt-4" type="submit" name="submit-code">Add code</button>
-    </form>
+      <div class="col-12">
+        <label for="expiry-date" class="form-label">Expiry date</label>
+        <input type="date" class="form-control" id="expiry-date" name="expiry-date" min="<?php echo date("Y-m-d"); ?>" required>
+      </div>
+    </div>
+
+    <button class="w-100 btn btn-warning btn-lg mt-4" type="submit" name="submit-code">Add code</button>
+  </form>
 </main>
 
 <?php
