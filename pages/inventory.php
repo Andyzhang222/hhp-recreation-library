@@ -7,41 +7,27 @@
     <div class="album py-5">
         <div class="container">
             <?php
-                $catCountQuery = "SELECT COUNT(*) FROM `equipment_category`;";
+                $catCountQuery = "SELECT * FROM `equipment_category`;";
                 $catCountResult = $conn->query($catCountQuery);
                 
                 if ($catCountResult->num_rows == 0) {
                     echo "<p class='text-dark'>No category found.</p>";
                 } else {
-                    $fetchResult = $catCountResult->fetch_assoc();
-                    $numCat = (int) $fetchResult['COUNT(*)'];
-
-                    for ($i=1; $i <= $numCat; $i++) {
-                        $retrieveCatQuery = "SELECT * 
-                        FROM `equipment_category` 
-                        WHERE id = $i;";
-
-                        $retrieveCatResult = $conn->query($retrieveCatQuery);
-                        if ($retrieveCatResult->num_rows == 0) {
-                            echo "<p class='text-dark'>No category with id " . $i . " exist.</p>";
-                        } else {
-                            $queryResult = $retrieveCatResult->fetch_assoc();
-                            $category = $queryResult['description'];
-                        }
+                    while ($fetchResult = $catCountResult->fetch_assoc()) {
                         ?>
-            <h2 class="fw-light"><?php echo $category; ?></h2>
+            <h2 class="fw-light"><?php echo $fetchResult['description']; ?></h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-3">
                         <?php
-                        $catQuery = "SELECT * 
+                        $typeID = $fetchResult['id'];
+                        $typeQuery = "SELECT * 
                         FROM `equipment_type` 
-                        WHERE category = $i;";
-                        $catResult = $conn->query($catQuery);
+                        WHERE category = '$typeID';";
+                        $typeResult = $conn->query($typeQuery);
 
-                        if ($catResult->num_rows == 0) {
+                        if ($typeResult->num_rows == 0) {
                             echo "<p class='text-dark'>No items available for borrow in this category.</p>";
                         } else {
-                            $k = 1;
-                            while ($result = $catResult->fetch_assoc()) {
+                            while ($result = $typeResult->fetch_assoc()) {
                                 $description = $result['description'];
                                 $item_id = $result['id'];
                                 $item_code = $result['code'];
@@ -57,7 +43,6 @@
                     </div>
                 </div>
                             <?php
-                                $k++;
                             }
                         }
                         ?>
