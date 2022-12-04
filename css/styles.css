@@ -202,7 +202,7 @@ footer {
 
 .Input{
     border-radius: 25px;
-    border: 2px solid yellow;
+    border: 2px solid #f1d829;
     padding: 20px; 
     width: 200px;
     height: 15px;   
@@ -303,3 +303,38 @@ set the pg-banner link with the hover elment*/
     flex-direction: column;
     width: 300px; 
 }
+#searchBar {
+    border: 2px solid #000000;
+    border-left: none;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    width: 250px;
+    float: right;
+}
+#searchBtn {
+    border: 2px solid #000000;
+    font-size: 16px;
+    padding: 10px;
+    background: #f1d829;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    float: right;
+
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+nav  {
+    margin-right: 2%;
+}
+#submit-code {
+    border: 2px solid #000000;
+    font-size: 16px;
+    padding: 10px;
+    background: #f1d829;
+}
+
+
+

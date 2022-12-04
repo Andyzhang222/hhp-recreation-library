@@ -1,14 +1,13 @@
+<?php
+if($_POST["q"] !== "null"){
+    require "db-connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>HHP Recreation Library</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        </style>
 
         <link rel="stylesheet" href="../css/styles.css">
 
@@ -56,3 +55,8 @@
                     </form>
                 </div>
             </header>
+<?php                
+} else {
+    header("Location: index.php");
+  }
+?>

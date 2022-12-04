@@ -17,17 +17,11 @@
         <div class = "vh-100 d-flex justify-content-center align-content-center">
     
 
-    <form class="align-items-center" action="" method="post">
+<form class="align-items-center" action="../includes/new-admin-code.php" method="POST">
 
   <div class="mb-3">
-    <label class="form-label">Current Passcode</label>
-    <input type="text" class="form-control" id="inputName" name="FirstName" method="post">
-    <label for="exampleInputPassword1" class="form-label">Additional Passcode</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
+    <label for="new-code-to-add" class="form-label">New Admin Code</label>
+    <input type="text" class="form-control" id="code-input" name="code" placeholder="Enter code..." maxlength=6>
 </div>
-
-  <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
+  <button type="submit" id="submit-code" name="submit">Create new code</button>
 </form>
-    </div>
-       
-    </div>
