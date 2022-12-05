@@ -11,6 +11,7 @@
     require '../includes/db-connection.php';
 
     $message = "";
+    $success = "";
 
     if (isset($_GET['invalid-name'])) {
         if ($_GET['invalid-name'] == 1) {
@@ -21,6 +22,16 @@
     if (isset($_GET['invalid-email'])) {
         if ($_GET['invalid-email'] == 1) {
         $message = "<p class='alert alert-warning'>Please enter a valid email.</p>";
+        }
+    }
+
+    if (isset($_GET['success'])) {
+        if ($_GET['success'] == 1) {
+        $message = "<p class='alert alert-success'>Form sent successfully.</p>";
+        }
+
+        if ($_GET['success'] == 0) {
+            $message = "<p class='alert alert-danger'>Failed to send form.</p>";
         }
     }
 
@@ -135,6 +146,7 @@
 
         <input class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="sumbit-form" value="Send the request">
     </form>
+    <?php echo $success; ?>
 </main>
 
 <?php
