@@ -6,6 +6,7 @@
         exit();
     }
 
+    require "../includes/send-email.php";
     require '../includes/header.php';
     require '../includes/db-connection.php';
 
@@ -43,14 +44,17 @@
             exit();
         }
 
-        $email_from = "phuonghng@outlook.com";
-        $email_subject = "Special item request from " . $email_from;
-        $email_body = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
+        try {
+            $mail->addAddress('olive_blue@outlook.com');           // Add a recipient
 
-        $to = "olive_blue@outlook.com";
-        $headers = "From: " . $email_from . "\r\n";
-
-        mail($to, $email_subject, $email_body, $headers);
+            $mail->isHTML(true);                                  
+            $mail->Subject = "Special item request";
+            $mail->Body    = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
+            $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 ?>
 
