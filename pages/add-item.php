@@ -9,51 +9,79 @@
   require '../includes/header.php';
   require '../includes/db-connection.php';
 
+  $message = "";
+
+  if (isset($_GET['success'])) {
+    if ($_GET['success'] == 1) {
+      $message = "<p class='alert alert-success text-center'>Item added successfully.</p>";
+    }
+
+    if ($_GET['success'] == 0) {
+      $message = "<p class='alert alert-danger text-center'>Failed to add item. Please try again.</p>";
+    }
+  }
+
 ?>
 
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-5 fw-normal">Add Item</h1>
-
-        <div class = "vh-100 d-flex justify-content-center align-content-center">
-    
-
-    <form class="align-items-center" action="" method="post">
-
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Item Name</label>
-    <input type="text" class="form-control" id="inputName" name="FirstName" action="welcome.php" method="post">
-    <div id="emailHelp" class="form-text"></div>
-
-    <?php if(isset($FirstName_error))echo $FirstName_error; ?>
-  
+<main class="request-info">
+  <div class="py-2 text-center">
+    <?php echo $message; ?>
+    <h2>Add new equipment</h2>
   </div>
+  <form class="needs-validation" action="../includes/add-item-processing.php" method="post" enctype="multipart/form-data">
+    <div class="row g-3">
+      <div class="col-12">
+        <label for="category" class="form-label">Category:</label>
+          <?php
+            $categoryQuery = "SELECT * FROM `equipment_category`;";
+            $categoryResult = $conn->query($categoryQuery);
 
-  <label for="exampleInputEmail1" class="form-label">Item Category</label>
-  <div class="d-flex gap-5 justify-content-center">
-  <button class="btn dropdown-toggle" id="dropdown-button" data-toggle="dropdown">
-  <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px">
-    <li><a id="drop" class="dropdown-item rounded-2 active" href="#">Learning Tools</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">Art Supplies</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">Outdoor Equipment</a></li>
-  </ul>
+            if ($categoryResult->num_rows == 0) {
+          ?>
+          <select name="category" class="form-select" disabled>
+            <option>No categories..</option>
+          </select>
+          <?php
+            } else {
+          ?>
+          <select name="category" class="form-select">
+            <?php
+              while ($row = $categoryResult->fetch_assoc()) {
+                $description = $row['description'];
+            ?>
+            <option><?php echo $description; ?></option>
+            <?php } ?>
+          </select>
+          <?php
+            }
+          ?>
+      </div>
 
-</div>
+      <div class="col-12">
+        <label for="item-name" class="form-label">Item name</label>
+        <input type="text" class="form-control" id="item-name" name="item-name" placeholder="e.g Sleeping bag">
+      </div>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">QTY</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="ConfirmPassword">
-   
-    <?php if(isset($cp_error))echo $cp_error; ?>
-  </div>
+      <div class="col-12">
+        <label for="item-code" class="form-label">Item code</label>
+        <input type="text" class="form-control" id="item-code" name="item-code" placeholder="e.g SLEEP_BAG">
+      </div>
 
-  <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
-</form>
+      <div class="col-12">
+        <label for="item-quantity" class="form-label">Item quantity</label>
+        <input type="text" class="form-control" id="item-quantity" name="item-quantity">
+      </div>
+
+      <div class="col-12">
+        <label for="item-image" class="form-label">Upload item image (please make sure the file extension is .png)</label>
+        <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+      </div>
     </div>
-       
-    </div>
 
-    <script type="text/javascript">
-    document.getElementById("btn dropdown-toggle").onclick = function () {
-        document.getElementById("dropdown-button").dropdown("toggle");
-    };
-</script>
+    <button class="w-100 btn btn-warning btn-lg mt-4 mb-4" type="submit" name="submit-item">Add item</button>
+  </form>
+</main>
+
+<?php
+  require "../includes/footer.php";
+?>
