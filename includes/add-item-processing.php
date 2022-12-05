@@ -15,16 +15,8 @@
         $insertQuery = "INSERT INTO `equipment_type` VALUES(NULL, '$item_code', '$catID', '$item_name', '$item_quantity');";
         $insertResult = $conn->query($insertQuery);
 
-        if ($insertResult) {
-            header("Location: ../pages/add-item.php?success=1");
-            exit();
-        } else {
-            header("Location: ../pages/add-item.php?success=0");
-            exit();
-        }
-
-        $target_dir = "../img/item-images/";
-        $target_file = $target_dir . basename($item_code) . ".png";
+        $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/img/item-images/";
+        $target_file = $target_dir . $item_code . ".png";
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
 
@@ -55,6 +47,14 @@
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
+        }
+
+        if ($insertResult) {
+            header("Location: ../pages/add-item.php?success=1");
+            exit();
+        } else {
+            header("Location: ../pages/add-item.php?success=0");
+            exit();
         }
     }
 ?>
