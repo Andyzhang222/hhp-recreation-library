@@ -7,6 +7,8 @@
     header("Location: ../index.php");
   }
 
+  $message = "";
+
   if (isset($_GET['empty-input'])) {
     if ($_GET['empty-input'] == 1) {
       $message = "<p class='alert alert-warning'>Please fill out all required fields.</p>";
