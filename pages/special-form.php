@@ -1,15 +1,5 @@
-<?php
 
-
-if(isset($_POST["regBtn"])) {
-  mail("hl767705@dal.ca", "Here is the subject line",
-  $_POST["Iventory"]. "From: hl767705@dal.ca");
-}
-
-
-?>
-
-<?php
+ <?php
   session_start();
   require '../includes/header.php';
   require '../includes/db-connection.php';
@@ -17,9 +7,15 @@ if(isset($_POST["regBtn"])) {
 <h2 class="text-center">Special Requests Form</h2> 
  
     <div class = "vh-100 d-flex justify-content-center align-content-center">
-    
 
-    <form class="align-items-center" action="" method="post">
+    <a href="mailto:reclib@dal.ca?Subject=Special HHP Library Request&body= Please state the following for the request to be valid: 
+      Full name: 
+      item requested:
+      quantity:
+      Dalhouise email:">Link Access to special requests <a>
+</div>
+
+  <!--  <form class="align-items-center" action="" method="post">
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">First Name</label>
@@ -67,4 +63,4 @@ if(isset($_POST["regBtn"])) {
 
   <button type="submit" class="btn btn-primary"  name="regBtn">Submit</button>
 </form>
-    </div>
+    </div> -->
