@@ -43,6 +43,7 @@
             <div class="card-body">
                 <button type="button" id="access-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</button>
                 <button type="button" id="add-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</button>
+                <button type="button" id="add-FAQ" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add FAQ</button>
             </div>
             </div>
         </div>
@@ -72,11 +73,16 @@
 </script>
 <script type="text/javascript">
     document.getElementById("add-code").onclick = function () {
-        location.href = "add-code.php";
+        location.href = "add-FAQ.php";
     };
 </script>
 
 <script type="text/javascript">
     document.getElementById("update-quantity").onclick = function () {
-        location.href = "update.php";   };
+        location.href = "edit.php";   };
+</script>
+
+<script type="text/javascript">
+    document.getElementById("add-FAQ").onclick = function () {
+        location.href = "add-FAQ.php";   };
 </script>
