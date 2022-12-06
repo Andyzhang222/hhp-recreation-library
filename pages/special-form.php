@@ -1,17 +1,11 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['admin'])) {
-        header("Location: ../index.php?no-access=1");
-        exit();
-    }
-
     require "../includes/send-email.php";
     require '../includes/header.php';
     require '../includes/db-connection.php';
 
     $message = "";
-    $success = "";
 
     if (isset($_GET['invalid-name'])) {
         if ($_GET['invalid-name'] == 1) {
@@ -55,16 +49,18 @@
             exit();
         }
 
-        try {
-            $mail->addAddress('olive_blue@outlook.com');           // Add a recipient
+        $mail->addAddress('olive_blue@outlook.com');           // Add a recipient
 
-            $mail->isHTML(true);                                  
-            $mail->Subject = "Special item request";
-            $mail->Body    = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
-            $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-            $mail->send();
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $mail->isHTML(true);                                  
+        $mail->Subject = "Special item request";
+        $mail->Body = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
+        $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+        if ($mail->send()) {
+            header("Location: special-form.php?success=1");
+            exit();
+        } else {
+            header("Location: special-form.php?success=0");
+            exit();
         }
     }
 ?>
@@ -76,7 +72,7 @@
     </div>
 
     <h4 class="mb-3">Your information</h4>
-    <form method="post" action="checkout.php" class="needs-validation" novalidate>
+    <form method="post" action="special-form.php" class="needs-validation">
         <div class="row g-3">
         <div class="col-12">
             <label for="fullName" class="form-label">Full name <span class="text-muted">(Required)</span></label>
@@ -146,7 +142,6 @@
 
         <input class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="sumbit-form" value="Send the request">
     </form>
-    <?php echo $success; ?>
 </main>
 
 <?php

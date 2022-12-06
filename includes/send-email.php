@@ -1,10 +1,10 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-    require 'vendor/autoload.php';
+    require "../vendor/autoload.php";
 
-    $mail = PHPMailer(true);
-    $mail->SMTPDebug = 2;                   // Enable verbose debug output
+    $mail = new PHPMailer(true);
+    $mail->SMTPDebug = 1;                   // Enable verbose debug output
     $mail->isSMTP();                        // Set mailer to use SMTP
     $mail->Host       = 'smtp-mail.outlook.com';    // Specify main SMTP server
     $mail->SMTPAuth   = true;               // Enable SMTP authentication
