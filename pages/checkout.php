@@ -116,6 +116,8 @@
     <div class="py-2 text-center">
       <h2>Checkout</h2>
       <p class="lead">Please fill out the following fields:</p>
+
+      <?php echo $message; ?>
     </div>
 
     <div class="row g-5">
@@ -224,8 +226,6 @@
               <label for="return-date" class="form-label">Estimated return date <span class="text-muted">(Required)</span></label>
               <input type="date" class="form-control" id="return-date" name="return-date" min="<?php echo date("Y-m-d"); ?>" required>
             </div>
-
-            <?php echo $message; ?>
           </div>
 
           <hr class="my-4">
