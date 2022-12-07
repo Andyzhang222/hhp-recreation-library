@@ -49,6 +49,7 @@
             <div class="card-body">
                 <a href="access-codes.php" id="access-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Current access codes</a>
                 <a href="add-code.php" id="add-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Add new code</a>
+                <a href="storage-code.php" id="storage-code" class="btn-spacing w-100 btn btn-lg btn-outline-dark">Storage codes</a>
             </div>
             </div>
         </div>
