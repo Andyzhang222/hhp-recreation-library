@@ -17,7 +17,7 @@
     }
 
     if (!isset($_SESSION['damaged-items'])) {
-        $_SESSION['damaged-items'];
+        $_SESSION['damaged-items'] = array();
     }
 
     if (isset($_POST['mark-damaged'])) {

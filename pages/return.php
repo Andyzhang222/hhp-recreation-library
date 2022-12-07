@@ -19,8 +19,9 @@
     $order_id = $_POST['order-num'];
     $notes = htmlspecialchars(stripslashes(trim($_POST['notes'])));
 
-    $findOrderQuery = "SELECT * FROM `returns` WHERE order_number = '$order_id' AND order_returned=0;";
+    $findOrderQuery = "SELECT * FROM `returns` WHERE order_number = '$order_id' AND processed = '0';";
     $findOrderResult = $conn->query($findOrderQuery);
+
     if ($findOrderResult->num_rows == 0) {
       $returnQuery = "INSERT INTO `returns` VALUES(NULL, '$order_id', '$notes', CURDATE(), 0);";
       $returnResult = $conn->query($returnQuery);
@@ -36,6 +37,7 @@
       $message = "<p class='alert alert-warning text-center'>The return process for this order has already started.</p>";
     }
   }
+  
 
   $orderQuery = "SELECT order_number FROM `order`;";
   $orderResult = $conn->query($orderQuery);
