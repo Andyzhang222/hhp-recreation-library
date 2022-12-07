@@ -26,6 +26,7 @@
             $body = "
             <body>
                 <h2>Your code for retrieving the items: </h2>" . $row['code_combination'] . "
+                <h1>Your order number is " . $order_id . "
                 <p>This code will give you access to the Recreation Library, which is a large storage closet on the fourth floor of the Dentistry Building. When you're done with the items, please submit a return request on the website, then you can use the same code to return the items to the closet. That's it!</p>
             </body>";
 

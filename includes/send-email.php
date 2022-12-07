@@ -12,8 +12,8 @@
     $mail->SMTPAuth   = true;               // Enable SMTP authentication
     $mail->Username   = 'mail@server.com';     // SMTP username
     $mail->Password   = 'mailpassword';         // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;              // Enable TLS encryption, 'ssl' also accepted
-    $mail->Port       = 587;                // TCP port to connect to
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption, 'ssl' also accepted
+    $mail->Port       = 587;   // TCP port to connect to
 
     $mail->setFrom('mail@server.com', 'Name'); // Set sender of the mail
 ?>
