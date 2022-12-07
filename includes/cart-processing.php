@@ -3,7 +3,7 @@
     require_once "db-connection.php";
 
     if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'];
+        $_SESSION['cart'] = array();
     }
 
     if(isset($_POST['add-to-cart'])) {

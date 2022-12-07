@@ -42,7 +42,7 @@
         <div class="d-flex gap-2 w-100 justify-content-between">
             <div>
                 <h6 class="mb-0"><?php echo $row['code']; ?></h6>
-                <p class="mb-0 opacity-75"><?php echo $row['expiry_date']; ?></p>
+                <p class="mb-0 opacity-75"><?php echo "Expiry date: " . $row['expire_date']; ?></p>
             </div>
             <form method="post" action="access-codes.php">
                 <input type="hidden" name="hidden-code" value="<?php echo $row['code']; ?>">

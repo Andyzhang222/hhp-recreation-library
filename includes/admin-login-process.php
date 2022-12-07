@@ -12,7 +12,7 @@
 
     $codeQuery = "SELECT * 
     FROM `admin_code`
-    WHERE code=$codeSubmitted
+    WHERE code='$codeSubmitted'
     AND expire_date > CURDATE();";
 
     $codeResult = $conn->query($codeQuery);
@@ -24,4 +24,5 @@
         header("Location: ../pages/admin-page.php");
         exit();
     }
+    
 ?>
