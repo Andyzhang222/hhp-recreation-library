@@ -9,19 +9,19 @@
 
     if (isset($_GET['invalid-name'])) {
         if ($_GET['invalid-name'] == 1) {
-        $message = "<p class='alert alert-warning'>Please enter a valid name.</p>";
+            $message = "<p class='alert alert-warning'>Please enter a valid name.</p>";
         }
     }
 
     if (isset($_GET['invalid-email'])) {
         if ($_GET['invalid-email'] == 1) {
-        $message = "<p class='alert alert-warning'>Please enter a valid email.</p>";
+            $message = "<p class='alert alert-warning'>Please enter a valid email.</p>";
         }
     }
 
     if (isset($_GET['success'])) {
         if ($_GET['success'] == 1) {
-        $message = "<p class='alert alert-success'>Form sent successfully.</p>";
+            $message = "<p class='alert alert-success'>Form sent successfully.</p>";
         }
 
         if ($_GET['success'] == 0) {
@@ -49,12 +49,45 @@
             exit();
         }
 
-        $mail->addAddress('olive_blue@outlook.com');           // Add a recipient
+        $body = "
+            <body>
+                <h4>Special Request Form</h4>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Full name:</td>
+                            <td>" . $fullName . "</td>
+                        </tr>
+        
+                        <tr>
+                            <td>Email:</td>
+                            <td>" . $email . "</td>
+                        </tr>
+        
+                        <tr>
+                            <td>Program of Study:</td>
+                            <td>" . $program . "</td>
+                        </tr>
+        
+                        <tr>
+                            <td>Item name:</td>
+                            <td>" . $item . "</td>
+                        </tr>
+        
+                        <tr>
+                            <td>Purpose:</td>
+                            <td>" . $purpose . "</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </body>";
 
-        $mail->isHTML(true);                                  
+        $mail->addAddress('reclib@dal.ca');
+        $mail->IsHTML(true);
         $mail->Subject = "Special item request";
-        $mail->Body = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
-        $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+        $mail->Body = $body;
+        $mail->AltBody = "Full name: " . $fullName . "\nEmail: " . $email . "\nProgram of Study: " . $program . "\nItem name: " . $item . "\nPurpose: " . $purpose;
+        
         if ($mail->send()) {
             header("Location: special-form.php?success=1");
             exit();
@@ -69,78 +102,83 @@
     <div class="py-2 text-center">
       <h2>Special request form</h2>
       <p class="lead">Please fill out the following fields:</p>
+
+      <?php echo $message; ?>
     </div>
 
     <h4 class="mb-3">Your information</h4>
     <form method="post" action="special-form.php" class="needs-validation">
         <div class="row g-3">
-        <div class="col-12">
-            <label for="fullName" class="form-label">Full name <span class="text-muted">(Required)</span></label>
-            <input type="text" class="form-control" id="fullName" placeholder="Apple Smith" name="full-name" required>
-        </div>
+            <div class="col-12">
+                <label for="fullName" class="form-label">Full name <span class="text-muted">(Required)</span></label>
+                <input type="text" class="form-control" id="fullName" placeholder="Apple Smith" name="full-name" required>
+            </div>
 
-        <div class="col-12">
-            <label for="email" class="form-label">Email <span class="text-muted">(Required - has to be a Dal email with @dal.ca)</span></label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="you@dal.ca" required>
-        </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-muted">(Required - has to be a Dal email with @dal.ca)</span></label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="you@dal.ca" required>
+            </div>
 
-        <div class="col-12">
-            <label for="program" class="form-label">Program of Study <span class="text-muted">(Required)</span></label>
-            <input type="text" class="form-control" name="program" id="program" placeholder="e.g. Bachelor of Applied Computer Science" required>
-        </div>
+            <div class="col-12">
+                <label for="program" class="form-label">Program of Study <span class="text-muted">(Required)</span></label>
+                <input type="text" class="form-control" name="program" id="program" placeholder="e.g. Bachelor of Applied Computer Science" required>
+            </div>
 
-        <div class="col-12">
-            <label for="item-name" class="form-label">What is/are the item(s) that you are requesting? <span class="text-muted">(Required)</span></label>
-            <input type="text" class="form-control" name="item-name" id="item-name" required>
-        </div>
+            <div class="col-12">
+                <label for="item-name" class="form-label">What is/are the item(s) that you are requesting? <span class="text-muted">(Required)</span></label>
+                <input type="text" class="form-control" name="item-name" id="item-name" required>
+            </div>
 
-        <div class="col-12">
-            <label for="purpose" class="form-label">For what purpose are you requesting this item/these items?  <span class="text-muted">(Required)</span></label>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="In-classroom use">
-            <label class="form-check-label" for="purpose">
-                In-classroom use
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="For use outside the classroom (i.e., in community), to fulfill a course requirement">
-            <label class="form-check-label" for="purpose">
-                For use outside the classroom (i.e., in community), to fulfill a course requirement 
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="For use with an extracurricular group on campus (i.e., SAHHPer)">
-            <label class="form-check-label" for="purpose">
-                For use with an extracurricular group on campus (i.e., SAHHPer)  
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="For use in a volunteer or work placement">
-            <label class="form-check-label" for="purpose">
-                For use in a volunteer or work placement   
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="For personal use">
-            <label class="form-check-label" for="purpose">
-                For personal use    
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="purpose" value="other">
-            <label class="form-check-label" for="purpose">
-                Other reason:    
-            </label>
-            <input type="text" class="form-control" name="other" id="other">
-            </div>
-        </div>
+            <div class="col-12">
+                <label for="purpose" class="form-label">For what purpose are you requesting this item/these items?  <span class="text-muted">(Required)</span></label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="In-classroom use">
+                    <label class="form-check-label" for="purpose">
+                        In-classroom use
+                    </label>
+                </div>
 
-        <?php echo $message; ?>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="For use outside the classroom (i.e., in community), to fulfill a course requirement">
+                    <label class="form-check-label" for="purpose">
+                        For use outside the classroom (i.e., in community), to fulfill a course requirement 
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="For use with an extracurricular group on campus (i.e., SAHHPer)">
+                    <label class="form-check-label" for="purpose">
+                        For use with an extracurricular group on campus (i.e., SAHHPer)  
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="For use in a volunteer or work placement">
+                    <label class="form-check-label" for="purpose">
+                        For use in a volunteer or work placement   
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="For personal use">
+                    <label class="form-check-label" for="purpose">
+                        For personal use    
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="purpose" value="other">
+                    <label class="form-check-label" for="purpose">
+                        Other reason:    
+                    </label>
+                    <input type="text" class="form-control" name="other" id="other">
+                </div>
+            </div>
         </div>
 
         <hr class="my-4">
 
-        <input class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="sumbit-form" value="Send the request">
+        <button class=" w-100 mb-3 btn btn-warning btn-lg" type="submit" name="submit-form">Send the request</button>
     </form>
 </main>
 

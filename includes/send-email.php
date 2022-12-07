@@ -1,17 +1,19 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\SMTP;
     require "../vendor/autoload.php";
 
+    date_default_timezone_set('America/Halifax');
     $mail = new PHPMailer(true);
-    $mail->SMTPDebug = 1;                   // Enable verbose debug output
+    $mail->SMTPDebug = 0;                   // Enable verbose debug output
     $mail->isSMTP();                        // Set mailer to use SMTP
-    $mail->Host       = 'smtp-mail.outlook.com';    // Specify main SMTP server
+    $mail->Host       = 'smtp.office365.com';    // Specify main SMTP server
     $mail->SMTPAuth   = true;               // Enable SMTP authentication
-    $mail->Username   = 'phuonghng@outlook.com';     // SMTP username
-    $mail->Password   = 'avocado0605';         // SMTP password
-    $mail->SMTPSecure = 'tls';              // Enable TLS encryption, 'ssl' also accepted
+    $mail->Username   = 'mail@server.com';     // SMTP username
+    $mail->Password   = 'mailpassword';         // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;              // Enable TLS encryption, 'ssl' also accepted
     $mail->Port       = 587;                // TCP port to connect to
 
-    $mail->setFrom('phuonghng@outlook.com', 'Phuong Nguyen'); // Set sender of the mail
+    $mail->setFrom('mail@server.com', 'Name'); // Set sender of the mail
 ?>
