@@ -15,7 +15,7 @@
         $insertQuery = "INSERT INTO `equipment_type` VALUES(NULL, '$item_code', '$catID', '$item_name', '$item_quantity');";
         $insertResult = $conn->query($insertQuery);
 
-        $target_dir = $_SERVER['HTTP_HOST']. "/HHPRecLibrary/img/item-images/";
+        $target_dir = "https://" . $_SERVER['HTTP_HOST']. "/HHPRecLibrary/img/item-images/";
         $target_file = $target_dir . $item_code . ".png";
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
