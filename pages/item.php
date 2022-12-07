@@ -4,7 +4,7 @@
     $_SESSION['cart'] = array();
   }
 
-  require_once "../includes/db-connection.php";
+  require_once "../dbconnect.php";
   require "../includes/header.php";
 
   $message = '';

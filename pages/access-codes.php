@@ -2,11 +2,12 @@
     session_start();
 
     if (!isset($_SESSION['admin'])) {
-        header("Location: ../index.php?no-access=1");
+        $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/index.php?no-access=1';
+        header("Location: $location");
         exit();
     }
 
-    require_once "../includes/db-connection.php";
+    require_once "../dbconnect.php";
     require "../includes/header.php";
 
     $message = "";
@@ -44,7 +45,7 @@
                 <h6 class="mb-0"><?php echo $row['code']; ?></h6>
                 <p class="mb-0 opacity-75"><?php echo "Expiry date: " . $row['expire_date']; ?></p>
             </div>
-            <form method="post" action="access-codes.php">
+            <form method="post" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/access-codes.php'; ?>">
                 <input type="hidden" name="hidden-code" value="<?php echo $row['code']; ?>">
                 <input class="link-primary remove-button" onclick="return confirm('Are you sure you want to remove this access code?')" type="submit" name="remove-code" value="Remove code" />
             </form>

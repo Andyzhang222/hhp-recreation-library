@@ -1,10 +1,11 @@
 <?php
   session_start();
+  require_once "../dbconnect.php";
   require "../includes/header.php";
-  require_once "../includes/db-connection.php";
 
   if (sizeof($_SESSION['cart']) == 0) {
-    header("Location: ../index.php");
+    $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php';
+    header("Location: $location");
   }
 
   $message = "";
@@ -52,7 +53,8 @@
     $returnDateString = $_POST['return-date'];
 
     if (empty($fullName) || empty($email) || empty($returnDateString)) {
-      header("Location: checkout.php?empty-input=1");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?empty-input=1';
+      header("Location: $location");
       exit();
     }
 
@@ -60,12 +62,14 @@
     $emailValidator = "/^[\w\-\.]+@dal.ca$/";
 
     if (preg_match($nameValidator, $fullName) != 1) {
-      header("Location: checkout.php?invalid-name=1");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?invalid-name=1';
+      header("Location: $location");
       exit();
     }
 
     if (preg_match($emailValidator, $email) != 1) {
-      header("Location: checkout.php?invalid-email=1");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?invalid-email=1';
+      header("Location: $location");
       exit();
     }
 
@@ -73,7 +77,8 @@
     $minDate = date("Y-m-d", strtotime("+2 days", strtotime("now")));
 
     if (($minDate <= $dateNeeded) != 1) {
-      header("Location: checkout.php?invalid-date=1");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?invalid-date=1';
+      header("Location: $location");
       exit();
     }
 
@@ -81,6 +86,7 @@
     $maxDate = date("Y-m-d", strtotime("+30 days", strtotime("now")));
 
     if (($maxDate > $returnDate) != 1) {
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?invalid-date=2';
       header("Location: checkout.php?invalid-date=2");
       exit();
     }
@@ -103,10 +109,12 @@
         $updateResult = $conn->query($updateQuery);
       }
       $_SESSION['cart'] = array();
-      header("Location: confirmation.php");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/confirmation.php';
+      header("Location: $location");
       exit();
     } else {
-      header("Location: checkout.php?insert-error=1");
+      $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php?insert-error=1';
+      header("Location: $location");
       exit();
     }
   }
@@ -154,12 +162,12 @@
             }
           ?>
         </ul>
-      <a href="shopping-cart.php" class="w-40 btn btn-warning">Go back to cart</a>
+      <a href="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/shopping-cart.php'; ?>" class="w-40 btn btn-warning">Go back to cart</a>
 
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Your information</h4>
-        <form method="post" action="checkout.php" class="needs-validation" novalidate>
+        <form method="post" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/checkout.php'; ?>" class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-12">
               <label for="fullName" class="form-label">Full name <span class="text-muted">(Required)</span></label>

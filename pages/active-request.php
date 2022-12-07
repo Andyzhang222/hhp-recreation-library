@@ -2,11 +2,12 @@
     session_start();
 
     if (!isset($_SESSION['admin'])) {
-        header("Location: ../index.php?no-access=1");
+        $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php?no-access=1';
+        header("Location: $location");
         exit();
     }
 
-    require_once "../includes/db-connection.php";
+    require_once "../dbconnect.php";
     require "../includes/header.php";
 
     if (isset($_GET['id'])) {
@@ -43,10 +44,10 @@
                   
                             $description = $itemInfo['description'];
                             $code = $itemInfo['code'];
-                            $imageSrc = "../img/item-images/" . $code . ".png";
+                            $imageSrc = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/img/item-images/' . $code . '.png';
                             ?>
                                 <div class="list-group-item list-group-item-action d-flex justify-content-between mb-3" aria-current="true">
-                                    <div class="d-flex gap-2 w-100 justify-content-start align-items-center" method="POST" action="shopping-cart.php">
+                                    <div class="d-flex gap-2 w-100 justify-content-start align-items-center">
                                         <img class="item-in-cart" src="<?php echo $imageSrc; ?>" alt="<?php echo $description; ?>" class="rounded-circle flex-shrink-0">
                                         <div>
                                             <h6 class="mb-0"><?php echo $description; ?></h6>

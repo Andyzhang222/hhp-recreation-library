@@ -5,7 +5,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $searchKey = htmlspecialchars(stripslashes(trim($_POST['search-keywords'])));
 
-        require_once "../includes/db-connection.php";
+        require_once "../dbconnect.php";
 
         if (empty($searchKey)) {
             header("Location: ../index.php?search-empty=1");

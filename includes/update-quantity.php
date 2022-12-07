@@ -1,6 +1,6 @@
 <?php
     
-    require_once "db-connection.php";
+    require_once "../dbconnect.php";
 
     if(isset($_POST['Update'])){
 
@@ -30,5 +30,7 @@
         }
         }
     }
-    header("Location: ../index.php?submit=1");
+    $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/index.php?submit=1';
+    header("Location: $location");
+    exit();
 ?>

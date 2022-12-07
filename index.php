@@ -1,8 +1,8 @@
 <?php
   session_start();
 
+  require_once "dbconnect.php";
   require 'includes/header.php';
-  require 'includes/db-connection.php';
 
   if (isset($_GET['search-empty'])) {
     if ($_GET['search-empty'] == 1) {

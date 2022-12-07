@@ -1,11 +1,12 @@
 <?php
     session_start();
-    require_once "db-connection.php";
+    require_once "../dbconnect.php";
     if (isset($_POST['submit-admin-code'])) {
         $codeSubmitted = trim(htmlspecialchars(stripslashes($_POST["code-submitted"])));
 
         if (empty($codeSubmitted)) {
-            header("Location: ../pages/admin-login.php?empty-input=1");
+            $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/admin-login.php?empty-input=1';
+            header("Location: $location");
             exit();
         }
     }
@@ -17,11 +18,13 @@
 
     $codeResult = $conn->query($codeQuery);
     if ($codeResult->num_rows === 0) {
-        header("Location: ../pages/admin-login.php?access-denied=1");
+        $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/admin-login.php?access-denied=1';
+        header("Location: $location");
         exit();
     } else {
         $_SESSION['admin'] = "admin";
-        header("Location: ../pages/admin-page.php");
+        $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/admin-page.php';
+        header("Location: $location");
         exit();
     }
     

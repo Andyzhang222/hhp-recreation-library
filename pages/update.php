@@ -6,8 +6,8 @@
         exit();
     }
 
+	require_once "../dbconnect.php";
     require '../includes/header.php';
-    require_once '../includes/db-connection.php';
 
 	$message = "";
 	if (isset($_POST['update-button'])) {

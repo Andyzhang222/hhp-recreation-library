@@ -2,7 +2,8 @@
   session_start();
 
   if (isset($_SESSION['admin'])) {
-    header("Location: admin-page.php");
+    $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/admin-page.php';
+    header("Location: $location");
     exit();
   }
 
@@ -10,7 +11,7 @@
 ?>
 
 <main class="form-signin m-auto text-center">
-  <form method="post" id="admin-form" action="../includes/admin-login-process.php">
+  <form method="post" id="admin-form" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/includes/admin-login-process.php'; ?>">
     <h1 class="h3 mb-3 fw-normal">Please enter admin code:</h1>
 
     <div id="admin-input">

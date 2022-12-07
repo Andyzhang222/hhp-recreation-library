@@ -1,5 +1,5 @@
 <?php
-    include_once "db-connection.php";
+    require_once "../dbconnect.php";
 
     if (isset($_POST['submit-item'])) {
         $category = $_POST['category'];
@@ -15,7 +15,7 @@
         $insertQuery = "INSERT INTO `equipment_type` VALUES(NULL, '$item_code', '$catID', '$item_name', '$item_quantity');";
         $insertResult = $conn->query($insertQuery);
 
-        $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/img/item-images/";
+        $target_dir = "https://" . $_SERVER['HTTP_HOST']. "/HHPRecLibrary/img/item-images/";
         $target_file = $target_dir . $item_code . ".png";
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
@@ -50,10 +50,12 @@
         }
 
         if ($insertResult) {
-            header("Location: ../pages/add-item.php?success=1");
+            $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/add-item.php?success=1';
+            header("Location: $location");
             exit();
         } else {
-            header("Location: ../pages/add-item.php?success=0");
+            $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/add-item.php?success=0';
+            header("Location: $location");
             exit();
         }
     }
