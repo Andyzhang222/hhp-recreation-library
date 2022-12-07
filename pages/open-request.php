@@ -6,23 +6,47 @@
         exit();
     }
 
+    require "../includes/send-email.php";
     require_once "../includes/db-connection.php";
     require "../includes/header.php";
 
     if (isset($_POST['approve-request'])) {
         $order_id = $_POST['hidden-id'];
+        $email = $_POST['hidden-email'];
         $approveQuery = "UPDATE `order`
         SET order_processed = 1
         WHERE order_number='$order_id';";
         $approveResult = $conn->query($approveQuery);
-        $location1 = "active-request.php?id=" . $order_id;
-        $location2 = "open-request.php?id=" . $order_id . "&approve-fail=1";
+
+        $codeQuery = "SELECT * FROM `locker_code`;";
+        $codeResult = $conn->query($codeQuery);
+        $row = $codeResult->fetch_assoc();
 
         if ($approveResult) {
-            header("Location: $location1");
-            exit();
+            $body = "
+            <body>
+                <h2>Your code for retrieving the items: </h2>" . $row['code_combination'] . "
+                <p>This code will give you access to the Recreation Library, which is a large storage closet on the fourth floor of the Dentistry Building. When you're done with the items, please submit a return request on the website, then you can use the same code to return the items to the closet. That's it!</p>
+            </body>";
+
+            $mail->addAddress($email);
+            $mail->IsHTML(true);
+            $mail->Subject = "Order confirmation";
+            $mail->Body = $body;
+            $mail->AltBody = "Your code for retrieving the items: This code will give you access to the Recreation Library, which is a large storage closet on the fourth floor of the Dentistry Building. When you're done with the items, please submit a return request on the website, then you can use the same code to return the items to the closet. That's it!";
+            
+            if ($mail->send()) {
+                $location = "active-request.php?id=" . $order_id;
+                header("Location: $location");
+                exit();
+            } else {
+                $location = "open-request.php?id=" . $order_id . "&approve-fail=2";
+                header("Location: $location");
+                exit();
+            }
         } else {
-            header("Location: $location2");
+            $location = "open-request.php?id=" . $order_id . "&approve-fail=1";
+            header("Location: $location");
             exit();
         }
     }
@@ -30,6 +54,10 @@
     if (isset($_GET['approve-fail'])) {
         if ($_GET['approve-fail'] == 1) {
             echo "<p class='alert alert-warning'>Fail to approve this request.</p>";
+        }
+
+        if ($_GET['approve-fail'] == 2) {
+            echo "<p class='alert alert-warning'>Fail to send confirmation email.</p>";
         }
     }
 
@@ -106,8 +134,9 @@
     <div class="d-grid mt-3 mb-3 gap-2 d-sm-flex justify-content-sm-center mb-5">
         <form method="post" action="open-request.php">
             <input type="submit" name="approve-request"class="btn btn-warning btn-lg px-4 me-sm-3" value="Approve request"/>
-            <input type="submit" name="cancel-request" class="btn btn-outline-secondary btn-lg px-4" value="Cancel request"/>
+            <a href="<?php echo "mailto:" . $requestInfo['borrower_email']; ?>" class="btn btn-outline-secondary btn-lg px-4">Cancel request</a>
             <input type="hidden" name="hidden-id" value="<?php echo $requestInfo['order_number']; ?>">
+            <input type="hidden" name="hidden-email" value="<?php echo $requestInfo['borrower_email']; ?>">
         </form>
     </div>
 </div>

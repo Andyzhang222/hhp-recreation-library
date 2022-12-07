@@ -78,10 +78,6 @@
             </tr>
         </tbody>
     </table>
-
-    <div class="d-grid mt-3 gap-2 d-sm-flex justify-content-sm-center mb-5">
-        <button type="button" class="btn btn-warning btn-lg px-4 me-sm-3">Marked as returned</button>
-    </div>
 </div>
 <?php
     }
