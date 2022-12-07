@@ -2,11 +2,12 @@
     session_start();
 
     if (!isset($_SESSION['admin'])) {
-        header("Location: ../index.php?no-access=1");
+        $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php?no-access=1';
+        header("Location: $location");
         exit();
     }
 
-    require_once "../includes/db-connection.php";
+    require_once "../dbconnect.php";
     require "../includes/header.php";
 
     if (isset($_GET['success'])) {
@@ -27,11 +28,11 @@
 		$updateResult = $conn->query($updateQuery);
 
         if ($updateResult) {
-            $location = "edit-faq.php?faqID=" . $faqID . "&success=1";
+            $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/edit-faq.php?faqID=' . $faqID . '&success=1';
             header("Location: $location");
             exit();
         } else {
-            $location = "edit-faq.php?faqID=" . $faqID . "&success=0";
+            $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/edit-faq.php?faqID=' . $faqID . '&success=0';
             header("Location: $location");
             exit();
         }
@@ -51,7 +52,7 @@
     <h2>Update FAQ</h2>
   </div>
 
-  <form class="needs-validation" method="post" action="edit-faq.php">
+  <form class="needs-validation" method="post" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/edit-faq.php'; ?>">
     <div class="row g-3">
         <div class="col-12">
             <label for="question" class="form-label">Edit the question:</label>

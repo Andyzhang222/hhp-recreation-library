@@ -7,7 +7,7 @@
     }
 
     require "../includes/send-email.php";
-    require_once "../includes/db-connection.php";
+    require_once "../dbconnect.php";
     require "../includes/header.php";
 
     if (isset($_POST['approve-request'])) {

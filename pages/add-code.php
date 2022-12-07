@@ -2,12 +2,13 @@
   session_start();
 
   if (!isset($_SESSION['admin'])) {
-    header("Location: ../index.php?no-access=1");
+    $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/index.php?no-access=1';
+    header("Location: $location");
     exit();
   }
 
+  require_once "../dbconnect.php";
   require '../includes/header.php';
-  require '../includes/db-connection.php';
 
   $message = "";
 
@@ -31,7 +32,7 @@
     <?php echo $message; ?>
     <h2>Add new admin code</h2>
   </div>
-  <form class="needs-validation" method="post" action="add-code.php">
+  <form class="needs-validation" method="post" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/add-code.php'; ?>">
     <div class="row g-3">
       <div class="col-12">
         <label for="new-code" class="form-label">Enter new code here:</label>

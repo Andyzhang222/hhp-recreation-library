@@ -3,7 +3,7 @@
 
     require "../includes/send-email.php";
     require '../includes/header.php';
-    require '../includes/db-connection.php';
+    require_once "../dbconnect.php";
 
     $message = "";
 

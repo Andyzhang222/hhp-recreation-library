@@ -8,7 +8,7 @@
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">An email will be sent once the request is approved and next steps on how to retrieve the items.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="../index.php" class="btn btn-outline-warning btn-lg px-4">Go back to homepage.</a>
+            <a href="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php'; ?>" class="btn btn-outline-warning btn-lg px-4">Go back to homepage.</a>
         </div>
     </div>
 </div>

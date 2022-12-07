@@ -1,7 +1,14 @@
 <?php
   session_start();
+
+  if (!isset($_SESSION['admin'])) {
+    $location = 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/index.php?no-access=1';
+    header("Location: $location");
+    exit();
+  }
+  
+  require_once "../dbconnect.php";
   require "../includes/header.php";
-  require_once "../includes/db-connection.php";
 ?>
 
 <div class="search-res">
@@ -23,8 +30,8 @@
     <div class="d-flex text-muted pt-3">
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
-          <a href="individual-return.php?returnID=<?php echo $return_id; ?>" class="text-gray-dark">Return ID: <?php echo $return_id; ?></a>
-          <a href="individual-return.php?returnID=<?php echo $return_id; ?>">View return</a>
+          <a href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/individual-return.php?returnID=' . $return_id; ?>" class="text-gray-dark">Return ID: <?php echo $return_id; ?></a>
+          <a href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/individual-return.php?returnID=' . $return_id; ?>">View return</a>
         </div>
         <span class="d-block"><?php echo $row['return_date']; ?></span>
       </div>
@@ -50,8 +57,8 @@
     <div class="d-flex text-muted pt-3">
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
-          <a href="processed-return.php?returnID=<?php echo $return_id; ?>" class="text-gray-dark">Return ID: <?php echo $return_id; ?></a>
-          <a href="processed-return.php?returnID=<?php echo $return_id; ?>">View return</a>
+          <a href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/processed-return.php?returnID=' . $return_id; ?>" class="text-gray-dark">Return ID: <?php echo $return_id; ?></a>
+          <a href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/HHPRecLibrary/pages/processed-return.php?returnID=' . $return_id; ?>">View return</a>
         </div>
         <span class="d-block"><?php echo $row['return_date']; ?></span>
       </div>

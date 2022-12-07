@@ -2,11 +2,12 @@
     session_start();
 
     if (!isset($_SESSION['admin'])) {
-        header("Location: ../index.php?no-access=1");
+        $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php?no-access=1';
+        header("Location: $location");
         exit();
     }
 
-    require_once "../includes/db-connection.php";
+    require_once "../dbconnect.php";
     require "../includes/header.php";
 
     $message = "";
@@ -25,7 +26,7 @@
 
     if (isset($_POST['edit'])) {
         $post_id = $_POST['hidden-id'];
-        $location = "edit-faq.php?faqID=" . $post_id;
+        $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/edit-faq.php?faqID=' . $post_id;
         header("Location: $location");
         exit();
     }
@@ -53,7 +54,7 @@
                 <div class="d-flex justify-content-between">
                     <p class="text-dark"><?php echo $question; ?></p>
                     <div class="d-flex justify-content-end">
-                        <form method="post" action="current-faq.php">
+                        <form method="post" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/current-faq.php'; ?>">
                             <input type="hidden" name="hidden-id" value="<?php echo $row['id']; ?>" />
                             <input class="link-primary remove-button mr-3" type="submit" name="edit" value="Edit FAQ" />
                             <input class="link-primary remove-button" type="submit" name="delete" value="Delete FAQ" />

@@ -2,12 +2,13 @@
   session_start();
 
   if (!isset($_SESSION['admin'])) {
-    header("Location: ../index.php?no-access=1");
+    $location = 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/index.php?no-access=1';
+    header("Location: $location");
     exit();
   }
 
+  require_once "../dbconnect.php";
   require '../includes/header.php';
-  require '../includes/db-connection.php';
 
   $message = "";
 
