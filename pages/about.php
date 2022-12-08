@@ -25,7 +25,7 @@
         <div class="h-100 p-5 bg-light rounded-3">
           <h2>Contact us</h2>
           <p>For more information, contact reclib@dal.ca or Dr. Karen Gallant, karen.gallant@dal.ca. If the item you need is not listed, please send us a message through the special item request form below.</p>
-          <a href=""<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/special-form.php'; ?>"" class="btn btn-outline-secondary">Special item request form</a>
+          <a href="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/HHPRecLibrary/pages/special-form.php'; ?>" class="btn btn-outline-secondary">Special item request form</a>
         </div>
       </div>
     </div>
