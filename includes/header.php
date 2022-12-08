@@ -27,7 +27,6 @@
                         <li class="nav-item"><a href="../pages/faq.php" class="nav-link link-dark px-2">FAQs</a></li>
                         <li class="nav-item"><a href="../pages/about.php" class="nav-link link-dark px-2">About</a></li>
                         <li class="nav-item"><a href="../pages/return.php" class="nav-link link-dark px-2">Returns</a></li>
-                        <li class="nav-item"><a href="../pages/special-form.php" class="nav-link link-dark px-2">Special Request Form</a></li>
                     </ul>
                     <div class="nav justify-content-end">
                         <div class="cart-div">
